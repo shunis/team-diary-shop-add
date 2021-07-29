@@ -19,21 +19,20 @@ const { SubMenu } = Menu;
 
 function Navigation(props) {
   const user = useSelector((state) => state.user);
-
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
       if (response.status === 200) {
-        props.history.push("/logout");
+        props.history.push("/");
       } else {
         alert("Logout Failed..!");
       }
     });
   };
 
-  if (user.userData && !user.userData.isAuth) {
+  if (user.userData && user.userData.isAuth === true) {
     return (
       <Menu className="navigation" mode="horizontal">
-        <Menu.Item key="Home" icon={<HomeTwoTone />}>
+        <Menu.Item href="/" key="Home" icon={<HomeTwoTone />}>
           Home
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
@@ -73,7 +72,7 @@ function Navigation(props) {
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="Login" icon={<LockTwoTone />}>
-          Login
+          <a href="/login">Sign In</a>
         </Menu.Item>
         <Menu.Item key="Register" icon={<EditTwoTone />}>
           Register

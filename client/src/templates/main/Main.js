@@ -15,7 +15,6 @@ function Main() {
   const [SecondMainImage, setSecondMainImage] = useState([]);
   const [ThirdMainImage, setThirdMainImage] = useState([]);
   const [FourthMainImage, setFourthMainImage] = useState([]);
-  // const [CurrentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
