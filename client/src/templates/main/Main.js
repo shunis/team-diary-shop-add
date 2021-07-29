@@ -4,6 +4,7 @@ import MainImage from "./components/MainImage";
 import { Row, Card, Col } from "antd";
 import "../../assets/css/simple.css";
 import "antd/dist/antd.css";
+import { Button } from "antd"
 
 const { Meta } = Card;
 
@@ -14,7 +15,7 @@ function Main() {
   const [SecondMainImage, setSecondMainImage] = useState([]);
   const [ThirdMainImage, setThirdMainImage] = useState([]);
   const [FourthMainImage, setFourthMainImage] = useState([]);
-  const [CurrentPage, setCurrentPage] = useState(0);
+  // const [CurrentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
@@ -141,22 +142,25 @@ function Main() {
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Art" src="https://opensea.io/static/images/categories/sports.png" />}>
+              <Card hoverable style={{ width: 360 }} cover={<img alt="Sports" src="https://opensea.io/static/images/categories/sports.png" />}>
                 <Meta style={{ textAlign: "center" }} title="Sports" />
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Art" src="https://opensea.io/static/images/categories/utility.png" />}>
+              <Card hoverable style={{ width: 360 }} cover={<img alt="Utility" src="https://opensea.io/static/images/categories/utility.png" />}>
                 <Meta style={{ textAlign: "center" }} title="Utility" />
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Art" src="https://opensea.io/static/images/categories/all-nfts.png" />}>
+              <Card hoverable style={{ width: 360 }} cover={<img alt="All NFTs" src="https://opensea.io/static/images/categories/all-nfts.png" />}>
                 <Meta style={{ textAlign: "center" }} title="All NFTs" />
               </Card>
             </Col>
           </Row>
         </div>
+
+        <Button type="primary" size="large" style={{ marginLeft: '43.5%' }}>Explore the marketplace</Button>
+        <br/><br />
 
       </div>
     </div>

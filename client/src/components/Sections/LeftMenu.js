@@ -10,6 +10,9 @@ function LeftMenu(props) {
       <Menu.Item>
         <a href="/favorite">Favorite</a>
       </Menu.Item>
+      <Menu.Item>
+        <a href="/marketplace">Marketplace</a>
+      </Menu.Item>
     </Menu>
   );
 }

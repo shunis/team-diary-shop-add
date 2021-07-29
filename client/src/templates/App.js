@@ -4,12 +4,13 @@ import Auth from "../hoc/auth";
 
 import Main from "./main/Main";
 
-import NavBar from "../components/NavBar";
+import Navigation from "../components/Navigation";
+
 
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <NavBar />
+      <Navigation />
       <div>
         <Switch>
           <Route exact path="/" component={Auth(Main, null)} />
