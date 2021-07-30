@@ -32,8 +32,8 @@ function Navigation(props) {
   if (user.userData && user.userData.isAuth === true) {
     return (
       <Menu className="navigation" mode="horizontal">
-        <Menu.Item href="/" key="Home" icon={<HomeTwoTone />}>
-          Home
+        <Menu.Item key="Home" icon={<HomeTwoTone />}>
+          <a href="/">Home</a>
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
@@ -61,7 +61,7 @@ function Navigation(props) {
     return (
       <Menu className="navigation" mode="horizontal">
         <Menu.Item key="Home" icon={<HomeTwoTone />}>
-          Home
+        <a href="/">Home</a>
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
@@ -75,7 +75,7 @@ function Navigation(props) {
           <a href="/login">Sign In</a>
         </Menu.Item>
         <Menu.Item key="Register" icon={<EditTwoTone />}>
-          Register
+          <a href="/register">Register</a>
         </Menu.Item>
       </Menu>
     );

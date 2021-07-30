@@ -5,7 +5,8 @@ import Auth from "../hoc/auth";
 import Main from "./main/Main";
 
 import Navigation from "../components/Navigation";
-import LoginPage from "./Login/LoginPage";
+import LoginPage from "./login/LoginPage";
+import RegisterPage from "./register/RegisterPage";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Auth(Main, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
         </Switch>
       </div>
     </Suspense>
