@@ -69,7 +69,7 @@ function Main() {
                 style={{ width: 240 }}
                 cover={
                   <img
-                    alt="Popular item first"
+                    alt="Popular item second"
                     src={`${IMAGE_BASE_URL}w500${SecondMainImage.poster_path}`}
                   />
                 }
@@ -83,7 +83,7 @@ function Main() {
                 style={{ width: 240 }}
                 cover={
                   <img
-                    alt="Popular item first"
+                    alt="Popular item third"
                     src={`${IMAGE_BASE_URL}w500${ThirdMainImage.poster_path}`}
                   />
                 }
@@ -97,7 +97,7 @@ function Main() {
                 style={{ width: 240 }}
                 cover={
                   <img
-                    alt="Popular item first"
+                    alt="Popular item four"
                     src={`${IMAGE_BASE_URL}w500${FourthMainImage.poster_path}`}
                   />
                 }

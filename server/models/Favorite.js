@@ -15,7 +15,7 @@ const favoriteSchema = mongoose.Schema({
 	nftPrice: {
 		type: Number
 	},
-	nftArtist: {
+	nftOwned: {
 		type: String
 	},
 	nftImg: {

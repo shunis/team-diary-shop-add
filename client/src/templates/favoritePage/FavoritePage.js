@@ -47,7 +47,7 @@ function FavoritePage() {
 			<Popover content={content} title={`${favorite.nftName}`}>
 				<td>{favorite.nftName}</td>
 			</Popover>
-			<td>{favorite.nftArtist}</td>
+			<td>{favorite.nftOwned}</td>
 			<td>{favorite.nftPrice}</td>
 			<td><button onClick={() => onClickDelete(favorite.nftId, favorite.userFrom)}>Remove</button></td>
 		</tr>
@@ -62,7 +62,7 @@ function FavoritePage() {
 				<thead>
 					<tr>
 						<th>NFT Name</th>
-						<th>NFT Artist</th>
+						<th>NFT Owned</th>
 						<th>NFT Price</th>
 						<th>Remove</th>
 					</tr>
