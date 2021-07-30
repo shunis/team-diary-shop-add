@@ -10,6 +10,7 @@ import RegisterPage from "./register/RegisterPage";
 import FavoritePage from "./favoritePage/FavoritePage";
 
 import MarketPlaceList from "./marketPlace/MarketPlaceList";
+import MarketPlaceDetail from "./marketPlace/MarketPlaceDetail";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/favorite" component={Auth(FavoritePage, true)} />
           <Route exact path="/marketPlace" component={Auth(MarketPlaceList, null)} />
+          <Route exact path="/marketPlace/:nftId" component={Auth(MarketPlaceDetail, null)} />
         </Switch>
       </div>
     </Suspense>

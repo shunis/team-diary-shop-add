@@ -111,18 +111,20 @@ function MarketPlaceList() {
                 nfts.map((nft, index) => (
                   <Col span={6}>
                     <React.Fragment key={index}>
-                      <Card
-                        hoverable
-                        style={{ width: 240, marginTop: 20 }}
-                        cover={
-                          <img
-                            alt="marketplace list"
-                            src={`${IMAGE_BASE_URL}w500${nft.poster_path}`}
-                          />
-                        }
-                      >
-                        <Meta title={nft.title} />
-                      </Card>
+                      <a href={`/marketplace/${nft.id}`}>
+                        <Card
+                          hoverable
+                          style={{ width: 240, marginTop: 20 }}
+                          cover={
+                            <img
+                              alt="marketplace list"
+                              src={`${IMAGE_BASE_URL}w500${nft.poster_path}`}
+                            />
+                          }
+                        >
+                          <Meta title={nft.title} />
+                        </Card>
+                      </a>
                     </React.Fragment>
                   </Col>
                 ))}
