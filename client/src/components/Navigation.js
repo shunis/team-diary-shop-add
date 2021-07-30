@@ -22,7 +22,7 @@ function Navigation(props) {
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
       if (response.status === 200) {
-        props.history.push("/");
+        props.history.push("/login");
       } else {
         alert("Logout Failed..!");
       }
