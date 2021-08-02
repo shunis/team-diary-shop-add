@@ -65,7 +65,7 @@ function Navigation(props) {
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
-            <Menu.Item key="All">All NFTs</Menu.Item>
+            <Menu.Item key="All"><a href="/marketPlace">All NFTs</a></Menu.Item>
             <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
             <Menu.Item key="Utility">Utility</Menu.Item>

@@ -5,7 +5,7 @@ import Auth from "../hoc/auth";
 import Main from "./main/Main";
 
 import Navigation from "../components/Navigation";
-import LoginPage from "./login/LoginPage";
+import LoginPage from "./Login/LoginPage";
 import RegisterPage from "./register/RegisterPage";
 import FavoritePage from "./favoritePage/FavoritePage";
 

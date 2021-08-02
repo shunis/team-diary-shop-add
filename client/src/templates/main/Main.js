@@ -54,10 +54,13 @@ function Main() {
                 hoverable
                 style={{ width: 240 }}
                 cover={
-                  <img
-                    alt="Popular item first"
-                    src={`${IMAGE_BASE_URL}w500${FirstMainImage.poster_path}`}
-                  />
+                  <a href={`/marketplace/${FirstMainImage.id}`}>
+                    <img
+                      style={{ width: 240, height: 360}}
+                      alt="Popular item first"
+                      src={`${IMAGE_BASE_URL}w500${FirstMainImage.poster_path}`}
+                    />
+                  </a>
                 }
               >
                 <Meta title={FirstMainImage.title} />
@@ -68,10 +71,13 @@ function Main() {
                 hoverable
                 style={{ width: 240 }}
                 cover={
-                  <img
-                    alt="Popular item second"
-                    src={`${IMAGE_BASE_URL}w500${SecondMainImage.poster_path}`}
-                  />
+                  <a href={`/marketplace/${SecondMainImage.id}`}>
+                    <img
+                      style={{ width: 240, height: 360}}
+                      alt="Popular item second"
+                      src={`${IMAGE_BASE_URL}w500${SecondMainImage.poster_path}`}
+                    />
+                  </a>
                 }
               >
                 <Meta title={SecondMainImage.title} />
@@ -82,10 +88,13 @@ function Main() {
                 hoverable
                 style={{ width: 240 }}
                 cover={
-                  <img
-                    alt="Popular item third"
-                    src={`${IMAGE_BASE_URL}w500${ThirdMainImage.poster_path}`}
-                  />
+                  <a href={`/marketplace/${ThirdMainImage.id}`}>
+                    <img
+                      style={{ width: 240, height: 360}}
+                      alt="Popular item third"
+                      src={`${IMAGE_BASE_URL}w500${ThirdMainImage.poster_path}`}
+                    />
+                  </a>
                 }
               >
                 <Meta title={ThirdMainImage.title} />
@@ -96,10 +105,13 @@ function Main() {
                 hoverable
                 style={{ width: 240 }}
                 cover={
+                  <a href={`/marketplace/${FourthMainImage.id}`}>
                   <img
+                   style={{ width: 240, height: 360}}
                     alt="Popular item four"
                     src={`${IMAGE_BASE_URL}w500${FourthMainImage.poster_path}`}
                   />
+                  </a>
                 }
               >
                 <Meta title={FourthMainImage.title} />
@@ -151,7 +163,9 @@ function Main() {
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="All NFTs" src="https://opensea.io/static/images/categories/all-nfts.png" />}>
+              <Card hoverable style={{ width: 360 }} cover={
+                <a href="/marketPlace"><img style={{width: 360}} alt="All NFTs" src="https://opensea.io/static/images/categories/all-nfts.png" /></a>
+              }>
                 <Meta style={{ textAlign: "center" }} title="All NFTs" />
               </Card>
             </Col>
@@ -159,7 +173,7 @@ function Main() {
         </div>
 
         <Button type="primary" size="large" style={{ marginLeft: '43.5%' }}>Explore the marketplace</Button>
-        <br/><br />
+        <br /><br />
 
       </div>
     </div>

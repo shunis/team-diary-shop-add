@@ -7,14 +7,12 @@
     "node": "12.13.0",
     "npm": "6.12.0"
   },
-
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
     "frontend": "npm run start --prefix client",
     "serve": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
-
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
