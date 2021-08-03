@@ -22,3 +22,11 @@
 .navigation {
   margin-left: 5%;
 }
+
+.marketPlace-detail-image {
+  display: flex;
+  justify-content: center;
+  border: 3px solid #f0f0f0;
+  border-radius: 15px;
+  padding: 25px 0 25px 0;
+}
