@@ -12,12 +12,12 @@ import {
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../Config";
 
 const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { Option } = Select;
 const { Meta } = Card;
 
 function MarketPlaceList() {
-  const [nfts, setNfts] = useState([]);
+  const [Nfts, setNfts] = useState([]);
 
   useEffect(() => {
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&;amgiage=ko-Korean&page=1`;
@@ -28,7 +28,7 @@ function MarketPlaceList() {
     fetch(endpoint)
       .then((response) => response.json())
       .then((response) => {
-        setNfts([...nfts, ...response.results]);
+        setNfts([...Nfts, ...response.results]);
       });
   };
 
@@ -107,26 +107,26 @@ function MarketPlaceList() {
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 800 }}>
             <Row gutter={16}>
-              {nfts &&
-                nfts.map((nft, index) => (
-                  <Col span={6}>
-                    <React.Fragment key={index}>
-                      <a href={`/marketplace/${nft.id}`}>
+              {Nfts &&
+                Nfts.map((detail, index) => (
+                  <React.Fragment key={index}>
+                    <Col span={6}>
+                      <a href={`/marketplace/${detail.id}`}>
                         <Card
                           hoverable
                           style={{ width: 240, marginTop: 20 }}
                           cover={
                             <img
                               alt="marketplace list"
-                              src={`${IMAGE_BASE_URL}w500${nft.poster_path}`}
+                              src={`${IMAGE_BASE_URL}w500${detail.poster_path}`}
                             />
                           }
                         >
-                          <Meta title={nft.title} />
+                          <Meta title={detail.title} />
                         </Card>
                       </a>
-                    </React.Fragment>
-                  </Col>
+                    </Col>
+                  </React.Fragment>
                 ))}
             </Row>
           </Content>

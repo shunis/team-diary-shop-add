@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { Popover } from 'antd'
-import { IMAGE_BASE_URL } from '../Config'
 import '../../assets/css/favoritePage.css'
 
 function FavoritePage() {
@@ -12,7 +11,7 @@ function FavoritePage() {
 	}, [])
 
 	const fetchFavoriteMovie = () => {
-		Axios.post('/api/favorite/getFavoriteItem', { userFrom: localStorage.getItem('userId')})
+		Axios.post("/api/favorite/getFavoriteNFT", { userFrom: localStorage.getItem('userId')})
 		.then(response => {
 			if (response.data.success) {
 				setFavorites(response.data.favorites)
@@ -40,7 +39,7 @@ function FavoritePage() {
 	const renderCards = favorites.map((favorite, index) => {
 		const content = (
 			<div>
-				{favorite.nftImg ? <img src="" /> : "No Image"} 
+				{favorite.nftImg ? <img src="" alt="img" /> : "No Image"} 
 			</div>
 		)
 		return <tr key = {index}>
