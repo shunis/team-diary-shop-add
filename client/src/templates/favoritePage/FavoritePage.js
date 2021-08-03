@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { Popover } from 'antd'
+import { FAVORITE_SERVER } from '../Config'
 import '../../assets/css/favoritePage.css'
 
 function FavoritePage() {
@@ -11,7 +12,7 @@ function FavoritePage() {
 	}, [])
 
 	const fetchFavoriteMovie = () => {
-		Axios.post("/api/favorite/getFavoriteNFT", { userFrom: localStorage.getItem('userId')})
+		Axios.post(`${FAVORITE_SERVER}/getFavoriteNFT`, { userFrom: localStorage.getItem('userId')})
 		.then(response => {
 			if (response.data.success) {
 				setFavorites(response.data.favorites)

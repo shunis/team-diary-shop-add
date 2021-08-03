@@ -24,13 +24,10 @@ function MarketPlaceDetail(props) {
         onBack={() => window.history.back()}
         title={Nft.original_title}
         tags={<Tag color="blue">On sale</Tag>}
-        // extra={[
-        //   <Favorite
-        //     nftInfo={Nft}
-        //     nftId={nftId}
-        //     userFrom={localStorage.getItem("userId")}
-        //   />
-        // ]}
+        extra={[
+          <Favorite key={nftId} nftId={nftId} userFrom={localStorage.getItem("userId")}
+          />
+        ]}
       >
         <Row>
           <Statistic title="Status" value="Pending" />
