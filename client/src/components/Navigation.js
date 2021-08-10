@@ -22,6 +22,7 @@ function Navigation(props) {
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
       if (response.status === 200) {
+        window.localStorage.setItem("userId", "");
         props.history.push("/login");
       } else {
         alert("Logout Failed..!");
@@ -37,7 +38,9 @@ function Navigation(props) {
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
-            <Menu.Item key="All"><a href="/marketPlace">All NFTs</a></Menu.Item>
+            <Menu.Item key="All">
+              <a href="/marketPlace">All NFTs</a>
+            </Menu.Item>
             <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
             <Menu.Item key="Utility">Utility</Menu.Item>
@@ -61,11 +64,13 @@ function Navigation(props) {
     return (
       <Menu className="navigation" mode="horizontal">
         <Menu.Item key="Home" icon={<HomeTwoTone />}>
-        <a href="/">Home</a>
+          <a href="/">Home</a>
         </Menu.Item>
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
-            <Menu.Item key="All"><a href="/marketPlace">All NFTs</a></Menu.Item>
+            <Menu.Item key="All">
+              <a href="/marketPlace">All NFTs</a>
+            </Menu.Item>
             <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
             <Menu.Item key="Utility">Utility</Menu.Item>
