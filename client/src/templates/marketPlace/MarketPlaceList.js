@@ -34,11 +34,8 @@ function MarketPlaceList() {
 
   return (
     <Layout>
-      <Content style={{ padding: "0 50px" }}>
-        <Layout
-          className="site-layout-background"
-          style={{ padding: "24px 0" }}
-        >
+      <Content className="layout-content">
+        <Layout className="site-layout-background">
           <Sider className="site-layout-background" width={300}>
             <Menu
               mode="inline"
@@ -58,7 +55,7 @@ function MarketPlaceList() {
               </SubMenu>
               <SubMenu key="priceMenu" icon={<DollarTwoTone />} title="Price">
                 <Menu.Item key="price">
-                  <Select defaultValue="WON" style={{ width: 230 }}>
+                  <Select defaultValue="WON" className="select-coin">
                     <Option value="WON">Republic of Korea Won (WON)</Option>
                     <Option value="ethereum">Ether (ETH)</Option>
                   </Select>
@@ -70,7 +67,6 @@ function MarketPlaceList() {
                       placeholder="Minimum"
                     />
                     <Input
-                      className="site-input-split"
                       style={{
                         width: 30,
                         borderLeft: 0,
@@ -81,7 +77,6 @@ function MarketPlaceList() {
                       disabled
                     />
                     <Input
-                      className="site-input-right"
                       style={{ width: 100, textAlign: "center" }}
                       placeholder="Maximum"
                     />
@@ -105,7 +100,7 @@ function MarketPlaceList() {
               </SubMenu>
             </Menu>
           </Sider>
-          <Content style={{ padding: "0 24px", minHeight: 800 }}>
+          <Content className="content-list">
             <Row gutter={16}>
               {Nfts &&
                 Nfts.map((detail, index) => (
@@ -114,7 +109,7 @@ function MarketPlaceList() {
                       <a href={`/marketplace/${detail.id}`}>
                         <Card
                           hoverable
-                          style={{ width: 240, marginTop: 20 }}
+                          className="content-list-card"
                           cover={
                             <img
                               alt="marketplace list"
@@ -130,9 +125,11 @@ function MarketPlaceList() {
                 ))}
             </Row>
           </Content>
+
+          {/* //todo more list button 넣어야함 */}
         </Layout>
       </Content>
-      <Footer style={{ textAlign: "center" }}>Team Diary</Footer>
+      <Footer className="footer-team-name">Team Diary</Footer>
     </Layout>
   );
 }

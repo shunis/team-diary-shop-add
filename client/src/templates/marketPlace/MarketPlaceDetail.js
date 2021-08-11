@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL, IMAGE_BASE_URL } from "../Config";
-import {
+import { 
   PageHeader,
   Tag,
   Statistic,
@@ -16,6 +16,7 @@ import {
 import Favorite from "./components/Favorite";
 import GuestFavorite from "./components/GuestFavorite";
 import "../../assets/css/simple.css";
+import "../../assets/css/marketPlace.css"
 import Ethereum from "../../assets/img/ethereum.png";
 import MoreCategory from "./components/MoreCategory";
 
@@ -31,6 +32,7 @@ function MarketPlaceDetail(props) {
   const [owned, setOwned] = useState([]);
   const [category, setCategory] = useState([]);
 
+  //* Trading History Table Columns
   const columns = [
     {
       title: "Events",
@@ -74,6 +76,7 @@ function MarketPlaceDetail(props) {
     },
   ];
 
+  //* Trading History Table Data
   const data = [
     {
       key: "1",
@@ -106,7 +109,7 @@ function MarketPlaceDetail(props) {
   }, []);
 
   return (
-    <div style={{ width: "85%", margin: "1rem auto" }}>
+    <div className="marketplace-detail-main">
       <PageHeader
         onBack={() => window.history.back()}
         title={Nft.original_title}
@@ -130,10 +133,10 @@ function MarketPlaceDetail(props) {
             value={category.name}
           />
           <Statistic
+            className="marketplace-detail-page-header-statistic"
             title="Closing Date"
             // prefix="￦"
             value={Nft.release_date}
-            style={{ margin: "0 32px" }}
           />
           <Statistic title="Owned by" value={owned.name} />
         </Row>
@@ -149,7 +152,7 @@ function MarketPlaceDetail(props) {
             src={`${IMAGE_BASE_URL}w500${Nft.poster_path}`}
             onClick={() => setVisible(true)}
           />
-          <div style={{ display: "none" }}>
+          <div className="marketplace-detail-image-preview">
             <Image.PreviewGroup
               preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}
             >
@@ -178,7 +181,7 @@ function MarketPlaceDetail(props) {
                 type="primary"
                 shape="round"
                 size="large"
-                style={{ width: 150 }}
+                className="marketplace-buy-button"
               >
                 <WalletFilled />
                 Buy Now

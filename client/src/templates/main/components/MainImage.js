@@ -1,7 +1,9 @@
 import React from "react";
+import '../../../assets/css/mainPage.css'
 
 function MainImage(props) {
   return (
+    //! mainImage style은 url을 props로 받아서 className으로 안바꿈
     <div
       style={{
         background: `linear-gradient(to bottom,
@@ -19,15 +21,10 @@ function MainImage(props) {
     >
       <div>
         <div
-          style={{
-            position: "absolute",
-            maxWidth: "500px",
-            bottom: "2rem",
-            marginLeft: "2rem",
-          }}
+          className="main-image-text-area"
         >
-          <h2 style={{ color: "white " }}> {props.title} </h2>
-          <p style={{ color: "white", fontSize: "1rem" }}> {props.text} </p>
+          <h2 className="main-image-text-title"> {props.title} </h2>
+          <p className="main-image-text-content"> {props.text} </p>
         </div>
       </div>
     </div>

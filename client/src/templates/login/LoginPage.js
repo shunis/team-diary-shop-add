@@ -24,6 +24,7 @@ function LoginPage(props) {
 
   const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
 
+  //! Formik <- Unknown word라고 다른걸로 변경하면 에러 발생
   return (
     <Formik
       initialValues={{
@@ -48,8 +49,10 @@ function LoginPage(props) {
           dispatch(loginUser(dataToSubmit))
             .then(response => {
               if (response.payload.loginSuccess) {
+                //? login 성공하면 user테이블에서 해당 로그인 email의 id값 가져와서 저장
                 window.localStorage.setItem('userId', response.payload.userId);
                 if (rememberMe === true) {
+                  //? login 성공 시 localStorage rememberMe에 login email 저장 (단, rememberMe가 체크되어 있을 때)
                   window.localStorage.setItem('rememberMe', values.email);
                 } else {
                   localStorage.removeItem('rememberMe');

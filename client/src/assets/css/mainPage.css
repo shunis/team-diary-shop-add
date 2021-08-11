@@ -1,0 +1,59 @@
+.main-page {
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.main-row {
+  width: 85%;
+  margin: 1rem auto;
+}
+
+.site-card-wrapper {
+  padding: 30px;
+  background: #fff;
+}
+
+.card-default-size {
+  width: 240px;
+}
+
+.card-image-default-size {
+  width: 240px;
+  height: 360px;
+}
+
+.content-title {
+  margin: 20px 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.nft-category-card-size {
+  width: 360px;
+}
+
+.nft-category-text {
+  text-align: center;
+}
+
+.explore-button {
+  position: relative;
+  margin: 0 0 20px 43.5%;
+}
+
+.main-image-text-area {
+  position: absolute;
+	max-width: 500px;
+	bottom: 2rem;
+	margin-left: 2rem;
+}
+
+.main-image-text-title {
+	color: white;
+}
+
+.main-image-text-content {
+	color: white;
+	font-size: 1rem;
+}

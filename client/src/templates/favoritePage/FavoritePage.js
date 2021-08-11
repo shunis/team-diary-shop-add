@@ -71,6 +71,7 @@ function FavoritePage() {
       });
   };
 
+  //TODO pagination or loadMore
   const loadMoreItem = () => {
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&;amgiage=ko-Korean&page=${currentPage + 1}`;
     fetchNFT(endpoint);

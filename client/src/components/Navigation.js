@@ -55,6 +55,7 @@ function Navigation(props) {
         <Menu.Item key="Logout" icon={<UnlockTwoTone />}>
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>
+        {/* // TODO Update Required ItemGroup */}
         <Menu.Item key="Setting" icon={<SettingTwoTone />}>
           Setting
         </Menu.Item>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../Config";
 import MainImage from "./components/MainImage";
 import { Row, Card, Col, Button } from "antd";
-import "../../assets/css/simple.css";
+import "../../assets/css/mainPage.css";
 import "antd/dist/antd.css";
 
 const { Meta } = Card;
@@ -43,19 +43,18 @@ function Main() {
         />
       )}
       <div className="main-row">
-        <h2>Popular item</h2>
-        <hr />
+        <h2 className="content-title">Popular item</h2>
 
         <div className="site-card-wrapper">
           <Row gutter={32}>
             <Col span={6}>
               <Card
+                className="card-default-size"
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <a href={`/marketplace/${FirstMainImage.id}`}>
                     <img
-                      style={{ width: 240, height: 360}}
+                      className="card-image-default-size"
                       alt="Popular item first"
                       src={`${IMAGE_BASE_URL}w500${FirstMainImage.poster_path}`}
                     />
@@ -67,12 +66,12 @@ function Main() {
             </Col>
             <Col span={6}>
               <Card
+                className="card-default-size"
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <a href={`/marketplace/${SecondMainImage.id}`}>
                     <img
-                      style={{ width: 240, height: 360}}
+                      className="card-image-default-size"
                       alt="Popular item second"
                       src={`${IMAGE_BASE_URL}w500${SecondMainImage.poster_path}`}
                     />
@@ -84,12 +83,12 @@ function Main() {
             </Col>
             <Col span={6}>
               <Card
+                className="card-default-size"
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <a href={`/marketplace/${ThirdMainImage.id}`}>
                     <img
-                      style={{ width: 240, height: 360}}
+                      className="card-image-default-size"
                       alt="Popular item third"
                       src={`${IMAGE_BASE_URL}w500${ThirdMainImage.poster_path}`}
                     />
@@ -101,15 +100,15 @@ function Main() {
             </Col>
             <Col span={6}>
               <Card
+                className="card-default-size"
                 hoverable
-                style={{ width: 240 }}
                 cover={
                   <a href={`/marketplace/${FourthMainImage.id}`}>
-                  <img
-                   style={{ width: 240, height: 360}}
-                    alt="Popular item four"
-                    src={`${IMAGE_BASE_URL}w500${FourthMainImage.poster_path}`}
-                  />
+                    <img
+                      className="card-image-default-size"
+                      alt="Popular item four"
+                      src={`${IMAGE_BASE_URL}w500${FourthMainImage.poster_path}`}
+                    />
                   </a>
                 }
               >
@@ -119,61 +118,117 @@ function Main() {
           </Row>
         </div>
 
-        <br />
-        <h2>Create and sell your NFTs</h2>
-        <hr />
+        <h2 className="content-title">Create and sell your NFTs</h2>
 
         <div className="site-card-wrapper">
           <Row gutter={16}>
             <Col span={6}>
-              <Card title="Set up your wallet">Once you’ve set up your wallet of choice, connect it to OpenSea by clicking the wallet icon in the top right corner. Learn about the <a href="https://support.opensea.io/hc/en-us/articles/1500007978602-Wallets-supported-by-OpenSea">wallets we support.</a></Card>
+              <Card title="Set up your wallet">
+                Once you’ve set up your wallet of choice, connect it to OpenSea
+                by clicking the wallet icon in the top right corner. Learn about
+                the{" "}
+                <a href="https://support.opensea.io/hc/en-us/articles/1500007978602-Wallets-supported-by-OpenSea">
+                  wallets we support.
+                </a>
+              </Card>
             </Col>
             <Col span={6}>
-              <Card title="Create your collection">Click <a href="#">Create</a> and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.</Card>
+              <Card title="Create your collection">
+                Click <a href="#">Create</a> and set up your collection. Add
+                social links, a description, profile & banner images, and set a
+                secondary sales fee.
+              </Card>
             </Col>
             <Col span={6}>
-              <Card title="Add your NFTs">Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats, and unlockable content.</Card>
+              <Card title="Add your NFTs">
+                Upload your work (image, video, audio, or 3D art), add a title
+                and description, and customize your NFTs with properties, stats,
+                and unlockable content.
+              </Card>
             </Col>
             <Col span={6}>
-              <Card title="List them for sale">Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs, and we help you sell them!</Card>
+              <Card title="List them for sale">
+                Choose between auctions, fixed-price listings, and
+                declining-price listings. You choose how you want to sell your
+                NFTs, and we help you sell them!
+              </Card>
             </Col>
           </Row>
         </div>
 
-        <br />
-        <h2>Browse by category</h2>
-        <hr />
+        <h2 className="content-title">Browse by category</h2>
 
         <div className="site-card-wrapper">
           <Row gutter={24}>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Art" src="https://opensea.io/static/images/categories/art.png" />}>
-                <Meta style={{ textAlign: "center" }} title="Art" />
+              <Card
+                className="nft-category-card-size"
+                hoverable
+                cover={
+                  <img
+                    alt="Art"
+                    src="https://opensea.io/static/images/categories/art.png"
+                  />
+                }
+              >
+                <Meta className="nft-category-text" title="Art" />
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Sports" src="https://opensea.io/static/images/categories/sports.png" />}>
-                <Meta style={{ textAlign: "center" }} title="Sports" />
+              <Card
+                className="nft-category-card-size"
+                hoverable
+                cover={
+                  <img
+                    alt="Sports"
+                    src="https://opensea.io/static/images/categories/sports.png"
+                  />
+                }
+              >
+                <Meta className="nft-category-text" title="Sports" />
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={<img alt="Utility" src="https://opensea.io/static/images/categories/utility.png" />}>
-                <Meta style={{ textAlign: "center" }} title="Utility" />
+              <Card
+                className="nft-category-card-size"
+                hoverable
+                cover={
+                  <img
+                    alt="Utility"
+                    src="https://opensea.io/static/images/categories/utility.png"
+                  />
+                }
+              >
+                <Meta className="nft-category-text" title="Utility" />
               </Card>
             </Col>
             <Col span={6}>
-              <Card hoverable style={{ width: 360 }} cover={
-                <a href="/marketPlace"><img style={{width: 360}} alt="All NFTs" src="https://opensea.io/static/images/categories/all-nfts.png" /></a>
-              }>
-                <Meta style={{ textAlign: "center" }} title="All NFTs" />
+              <Card
+                hoverable
+                className="nft-category-card-size"
+                cover={
+                  <a href="/marketPlace">
+                    <img
+                      className="nft-category-card-size"
+                      alt="All NFTs"
+                      src="https://opensea.io/static/images/categories/all-nfts.png"
+                    />
+                  </a>
+                }
+              >
+                <Meta className="nft-category-text" title="All NFTs" />
               </Card>
             </Col>
           </Row>
         </div>
 
-        <Button type="primary" size="large" style={{ marginLeft: '43.5%' }}>Explore the marketplace</Button>
-        <br /><br />
-
+        <Button
+          className="explore-button"
+          type="primary"
+          size="large"
+        >
+          Explore the marketplace
+        </Button>
       </div>
     </div>
   );

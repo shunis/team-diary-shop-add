@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { Card, Col, Row } from "antd";
-import "../../../assets/css/simple.css";
+import "../../../assets/css/marketPlace.css";
 
 const { Meta } = Card;
 
@@ -32,12 +32,12 @@ function MoreCategory() {
       <Row className="marketplace-row" gutter={24}>
         <Col span={6}>
           <Card
+            className="marketplace-category-card"
             hoverable
-            style={{ width: 240, marginLeft: 50 }}
             cover={
               <a href={`/marketplace/${FirstCategoryImage.id}`}>
                 <img
-                  style={{ width: 240, height: 360 }}
+                  className="marketplace-category-card-image"
                   alt="category first item"
                   src={`${IMAGE_BASE_URL}w500${FirstCategoryImage.poster_path}`}
                 />
@@ -49,12 +49,12 @@ function MoreCategory() {
         </Col>
         <Col span={6}>
           <Card
+            className="marketplace-category-card"
             hoverable
-            style={{ width: 240, marginLeft: 50 }}
             cover={
               <a href={`/marketplace/${SecondCategoryImage.id}`}>
                 <img
-                  style={{ width: 240, height: 360 }}
+                  className="marketplace-category-card-image"
                   alt="category second item"
                   src={`${IMAGE_BASE_URL}w500${SecondCategoryImage.poster_path}`}
                 />
@@ -66,12 +66,12 @@ function MoreCategory() {
         </Col>
         <Col span={6}>
           <Card
+            className="marketplace-category-third-card"
             hoverable
-            style={{ width: 240, marginLeft: 40 }}
             cover={
               <a href={`/marketplace/${ThirdCategoryImage.id}`}>
                 <img
-                  style={{ width: 240, height: 360 }}
+                  className="marketplace-category-card-image"
                   alt="category third item"
                   src={`${IMAGE_BASE_URL}w500${ThirdCategoryImage.poster_path}`}
                 />
@@ -83,12 +83,12 @@ function MoreCategory() {
         </Col>
         <Col span={6}>
           <Card
+            className="marketplace-category-fourth-card"
             hoverable
-            style={{ width: 240, marginLeft: 25 }}
             cover={
               <a href={`/marketplace/${FourthCategoryImage.id}`}>
                 <img
-                  style={{ width: 240, height: 360 }}
+                  className="marketplace-category-card-image"
                   alt="category fourth item"
                   src={`${IMAGE_BASE_URL}w500${FourthCategoryImage.poster_path}`}
                 />
