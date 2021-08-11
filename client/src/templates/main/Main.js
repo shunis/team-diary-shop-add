@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../Config";
 import MainImage from "./components/MainImage";
-import { Row, Card, Col } from "antd";
+import { Row, Card, Col, Button } from "antd";
 import "../../assets/css/simple.css";
 import "antd/dist/antd.css";
-import { Button } from "antd"
 
 const { Meta } = Card;
 
