@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
 const { auth } = require("../middleware/auth");
+const { mongoose, isValidObjectId } = require("mongoose");
 
 router.get("/auth", auth, (req, res) => {
   res.status(200).json({
@@ -12,6 +13,29 @@ router.get("/auth", auth, (req, res) => {
     name: req.user.name,
     role: req.user.role,
   });
+});
+
+router.get("/user", async (req, res) => {
+  try {
+    const users = await User.find({});
+    return res.send({ users: users });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ err: err.message });
+  }
+});
+
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (!isValidObjectId(userId))
+      return res.status(400).send({ err: "invalid userId" });
+    const user = await User.findOne({ _id: userId });
+    return res.send({ user });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ err: err.message });
+  }
 });
 
 router.get("/logout", auth, (req, res) => {
