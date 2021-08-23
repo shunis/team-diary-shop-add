@@ -108,6 +108,16 @@ router.put("/user/:userId", async (req, res) => {
     if (name) user.name = name;
     await user.save();
     return res.send({ user });
+
+    // let updateBody = {};
+    // if (name) updateBody.name = name;
+
+    // const user = await User.findByIdAndUpdate(userId, updateBody, {
+    //   new: true,
+    // });
+    //* 위에 주석부분 처럼 mongoDB 내장 메소드 findByIdAndUpdate로 바로 수정할 수 있지만
+    //* {name {firstName: '', lastName: ''}} 이렇게 들어가는 경우에 firstName과 lastName이 모두 있는지 검사를 하지 않음
+    //* 그래서 findById 먼저하고 해당 값을 찾은 다음 req.body로 입력받은 값을 save하는 방식 사용
   } catch (err) {
     console.log(err);
     return res.status(500).send({ err: err.message });
