@@ -37,6 +37,7 @@ router.get("/user/:userId", async (req, res) => {
     return res.status(500).send({ err: err.message });
   }
 });
+//?  isValidObjectId(): 유요한 id인지 검증하는 mongoose 내장 메소드
 
 router.get("/logout", auth, (req, res) => {
   User.findOneAndUpdate(
@@ -52,14 +53,21 @@ router.get("/logout", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-  const user = new User(req.body);
+  try {
+    const user = new User(req.body);
 
-  user.save((err, doc) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).json({
-      success: true,
+    if (!user.email || (!user.name)) return res.status(400).send({ err: "Both email and name are required!" });
+
+    user.save((err, doc) => {
+      if (err) return res.json({ success: false, err });
+      return res.status(200).json({
+        success: true,
+      });
     });
-  });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ err: err.message });
+  }
 });
 
 router.post("/login", (req, res) => {
