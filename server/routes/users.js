@@ -56,7 +56,8 @@ router.post("/register", (req, res) => {
   try {
     const user = new User(req.body);
 
-    if (!user.email || (!user.name)) return res.status(400).send({ err: "Both email and name are required!" });
+    if (!user.email || !user.name)
+      return res.status(400).send({ err: "Both email and name are required!" });
 
     user.save((err, doc) => {
       if (err) return res.json({ success: false, err });
@@ -92,6 +93,25 @@ router.post("/login", (req, res) => {
       });
     });
   });
+});
+
+router.put("/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (!isValidObjectId(userId))
+      return res.status(400).send({ err: "invalid userId" });
+    const { name } = req.body;
+    if (name && typeof name !== "string")
+      return res.status(400).send({ err: "name are string" });
+
+    let user = await User.findById(userId);
+    if (name) user.name = name;
+    await user.save();
+    return res.send({ user });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ err: err.message });
+  }
 });
 
 module.exports = router;
