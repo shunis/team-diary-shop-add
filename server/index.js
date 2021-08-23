@@ -13,13 +13,15 @@ const connect = mongoose
   .connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
+    useCreateIndex: true, // 자동 인덱스 생성
+    useFindAndModify: false, // deprecated
   })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
 app.use(cors());
+
+mongoose.set("debug", true);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -45,5 +47,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`);
 });
-
-mongoose.set("debug", true);
