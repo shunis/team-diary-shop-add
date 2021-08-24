@@ -94,44 +94,6 @@ function RegisterPage(props) {
               {...formItemLayout}
               onSubmit={handleSubmit}
             >
-              <Form.Item required label="Name">
-                <Input
-                  id="name"
-                  placeholder="Enter your name"
-                  type="text"
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.name && touched.name
-                      ? "text-input error"
-                      : "text-input"
-                  }
-                />
-                {errors.name && touched.name && (
-                  <div className="input-feedback">{errors.name}</div>
-                )}
-              </Form.Item>
-
-              <Form.Item required label="BirthDay">
-                <Input
-                  id="birthDay"
-                  placeholder="Input your birthDay"
-                  type="date"
-                  value={values.birthDay}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.birthDay && touched.birthDay
-                      ? "text-input error"
-                      : "text-input"
-                  }
-                />
-                {errors.birthDay && touched.birthDay && (
-                  <div className="input-feedback">{errors.birthDay}</div>
-                )}
-              </Form.Item>
-
               <Form.Item
                 required
                 label="Email"
@@ -200,6 +162,44 @@ function RegisterPage(props) {
                 />
                 {errors.confirmPassword && touched.confirmPassword && (
                   <div className="input-feedback">{errors.confirmPassword}</div>
+                )}
+              </Form.Item>
+
+              <Form.Item required label="Name">
+                <Input
+                  id="name"
+                  placeholder="Enter your name"
+                  type="text"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.name && touched.name
+                      ? "text-input error"
+                      : "text-input"
+                  }
+                />
+                {errors.name && touched.name && (
+                  <div className="input-feedback">{errors.name}</div>
+                )}
+              </Form.Item>
+
+              <Form.Item required label="BirthDay">
+                <Input
+                  id="birthDay"
+                  placeholder="Input your birthDay"
+                  type="date"
+                  value={values.birthDay}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.birthDay && touched.birthDay
+                      ? "text-input error"
+                      : "text-input"
+                  }
+                />
+                {errors.birthDay && touched.birthDay && (
+                  <div className="input-feedback">{errors.birthDay}</div>
                 )}
               </Form.Item>
 
