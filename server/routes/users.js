@@ -71,6 +71,18 @@ router.post("/login", (req, res) => {
         message: "Auth failed, email not found!",
       });
 
+    if (!user.able && !user.status === "active")
+      return res.json({
+        loginSuccess: false,
+        message: "Withdrawal user!",
+      });
+
+    if (user.able && user.status === "Dormant")
+      return res.json({
+        loginSuccess: false,
+        message: "Dormant user!",
+      });
+
     user.comparePassword(req.body.password, (err, isMatch) => {
       if (!isMatch)
         return res.json({ loginSuccess: false, message: "Wrong password!" });
