@@ -14,6 +14,14 @@ const userSchema = mongoose.Schema({
     type: String,
     minlength: 5,
   },
+  able: {
+    type: Boolean,
+    default: true,
+  },
+  status: {
+    type: String,
+    default: "active",
+  },
   name: {
     type: String,
     maxlength: 50,
@@ -22,6 +30,9 @@ const userSchema = mongoose.Schema({
     type: Date,
     require: true,
     default: new Date().toString(),
+  },
+  birthDay: {
+    type: String,
   },
   role: {
     type: String,
@@ -32,14 +43,6 @@ const userSchema = mongoose.Schema({
   },
   tokenExp: {
     type: Number,
-  },
-  able: {
-    type: Boolean,
-    default: true,
-  },
-  status: {
-    type: String,
-    default: "active",
   },
 });
 
