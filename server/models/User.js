@@ -5,10 +5,6 @@ const jwt = require("jsonwebtoken");
 const moment = require("moment");
 
 const userSchema = mongoose.Schema({
-  name: {
-    type: String,
-    maxlength: 50,
-  },
   email: {
     type: String,
     trim: true,
@@ -17,6 +13,15 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     minlength: 5,
+  },
+  name: {
+    type: String,
+    maxlength: 50
+  },
+  joinDate: {
+    type: Date,
+    require: true,
+    default: new Date().toLocaleString()
   },
   role: {
     type: Number,
@@ -28,6 +33,14 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
+  able: {
+    type: Boolean,
+    default: true
+  },
+  status: {
+    type: String,
+    default: 'active'
+  }
 });
 
 userSchema.pre("save", function (next) {
