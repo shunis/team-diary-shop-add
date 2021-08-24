@@ -149,11 +149,12 @@ router.delete("/user/:userId", async (req, res) => {
     const { userId } = req.params;
     if (!isValidObjectId(userId))
       return res.status(400).send({ err: "invalid userId" });
-    const user = await User.findOneAndUpdate({ _id: userId });
+    const user = await User.findById(userId);
     if (user.able) user.able = false;
     if (user.status === "active") user.status = "withdrawal";
+    await user.save()
     return res.send({ user });
-  } catch {
+  } catch (err) {
     console.log(err);
     return res.status(500).send({ err: err.message });
   }

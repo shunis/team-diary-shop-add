@@ -16,16 +16,16 @@ const userSchema = mongoose.Schema({
   },
   name: {
     type: String,
-    maxlength: 50
+    maxlength: 50,
   },
   joinDate: {
     type: Date,
     require: true,
-    default: new Date().toLocaleString()
+    default: new Date().toString(),
   },
   role: {
-    type: Number,
-    default: 0,
+    type: String,
+    default: 'ROLE_USER',
   },
   token: {
     type: String,
@@ -35,12 +35,12 @@ const userSchema = mongoose.Schema({
   },
   able: {
     type: Boolean,
-    default: true
+    default: true,
   },
   status: {
     type: String,
-    default: 'active'
-  }
+    default: "active",
+  },
 });
 
 userSchema.pre("save", function (next) {
