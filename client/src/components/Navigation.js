@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 import axios from "axios";
 import { USER_SERVER } from "../templates/Config";
 import { withRouter } from "react-router";
 import { useSelector } from "react-redux";
-import { Menu } from "antd";
+import { Menu, Drawer } from "antd";
 import {
   HomeTwoTone,
   HeartTwoTone,
   ShopTwoTone,
-  LockTwoTone,
   EditTwoTone,
-  UnlockTwoTone,
   SettingTwoTone,
+  LogoutOutlined,
+  LoginOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
+import ProfileDrawer from "./ProfileDrawer";
 
 const { SubMenu } = Menu;
 
 function Navigation(props) {
   const user = useSelector((state) => state.user);
+
+  const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
       if (response.status === 200) {
@@ -52,13 +65,18 @@ function Navigation(props) {
         >
           <a href="/favorite">Favorite</a>
         </Menu.Item>
-        <Menu.Item key="Logout" icon={<UnlockTwoTone />}>
-          <a onClick={logoutHandler}>Logout</a>
-        </Menu.Item>
         {/* // TODO Update Required ItemGroup */}
-        <Menu.Item key="Setting" icon={<SettingTwoTone />}>
-          Setting
-        </Menu.Item>
+        <SubMenu key="Settings" icon={<SettingTwoTone />} title="Setting">
+          <Menu.Item key="Profile" icon={<UserOutlined />}>
+            <a onClick={showDrawer}>Profile</a>
+            <Drawer width={640} placement="right" onClose={onClose} visible={visible}>
+              <ProfileDrawer />
+            </Drawer>
+          </Menu.Item>
+          <Menu.Item key="Logout" icon={<LogoutOutlined />}>
+            <a onClick={logoutHandler}>Logout</a>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
     );
   } else {
@@ -77,7 +95,7 @@ function Navigation(props) {
             <Menu.Item key="Utility">Utility</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="Login" icon={<LockTwoTone />}>
+        <Menu.Item key="Login" icon={<LoginOutlined />}>
           <a href="/login">Sign In</a>
         </Menu.Item>
         <Menu.Item key="Register" icon={<EditTwoTone />}>
