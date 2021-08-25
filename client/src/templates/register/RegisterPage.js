@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -32,6 +32,7 @@ const tailFormItemLayout = {
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
+  const [formErrorMessage, setFormErrorMessage] = useState('')
   return (
     <Formik
       initialValues={{
@@ -68,7 +69,7 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert("Email already exists");
+              alert(response.payload.err);
             }
           });
 

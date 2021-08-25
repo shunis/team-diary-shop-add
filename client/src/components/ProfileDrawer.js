@@ -74,7 +74,6 @@ function ProfileDrawer() {
 	const withdrawalUser = () => {
 		axios.delete(`${USER_SERVER}/user/${profile.userData._id}`).then((response) => {
 			if (response.status === 200) {
-				logoutHandler()
 				window.localStorage.setItem('userId', '')
 				window.localStorage.setItem('rememberMe', '')
 				window.location.reload()

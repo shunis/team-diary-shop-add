@@ -50,6 +50,10 @@ router.post("/register", (req, res) => {
     if (!user.email || !user.name)
       return res.status(400).send({ err: "Both email and name are required!" });
 
+    let activeUser = User.find({ email: user.email, able: true });
+    if (activeUser)
+      return res.json({ success: false, err: "Users already registered!" });
+
     user.save((err, doc) => {
       if (err) return res.json({ success: false, err });
       return res.status(200).json({
@@ -71,13 +75,13 @@ router.post("/login", (req, res) => {
         message: "Auth failed, email not found!",
       });
 
-    if (!user.able && !user.status === "active")
+    if (!user.able && user.status === "withdrawal")
       return res.json({
         loginSuccess: false,
-        message: "Withdrawal user!",
+        message: "Auth failed, email not found!!",
       });
 
-    if (user.able && user.status === "Dormant")
+    if (user.able && user.status === "dormant")
       return res.json({
         loginSuccess: false,
         message: "Dormant user!",
