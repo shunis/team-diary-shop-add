@@ -34,3 +34,18 @@
 [data-theme="dark"] .site-description-item-profile-wrapper {
   color: rgba(255,255,255,0.65);
 }
+
+.site-description-item-profile-button {
+	margin-right: 10px;
+}
+
+.site-description-item-profile-favorite-image {
+	float: left;
+	margin-right: 34.5px;
+	width: 19%;
+}
+
+.site-description-item-profile-favorite-button {
+	margin-top: 15px;
+	left: 33.5%;
+}

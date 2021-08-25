@@ -73,9 +73,9 @@ function Navigation(props) {
               <ProfileDrawer />
             </Drawer>
           </Menu.Item>
-          <Menu.Item key="Logout" icon={<LogoutOutlined />}>
+          {/* <Menu.Item key="Logout" icon={<LogoutOutlined />}>
             <a onClick={logoutHandler}>Logout</a>
-          </Menu.Item>
+          </Menu.Item> */}
         </SubMenu>
       </Menu>
     );
