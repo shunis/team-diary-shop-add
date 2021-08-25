@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
   joinDate: {
     type: Date,
     require: true,
-    default: moment().format('YYYY-MM-DD'),
+    default: new Date(),
   },
   birthDay: {
     type: String,

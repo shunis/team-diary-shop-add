@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { dateFormat } from "./ParseData";
 
 import "../assets/css/profileDrawer.css";
 import {
@@ -145,7 +146,7 @@ function ProfileDrawer() {
       </Row>
       <Row>
         <Col span={12}>
-          <DescriptionItem title="joinDate" content={userInfo ? userInfo.joinDate : "load failed...."} />
+          <DescriptionItem title="joinDate" content={userInfo ? dateFormat(userInfo.joinDate, 'YYYY-MM-DD') : "load failed...."} />
         </Col>
         <Col span={12}>
           <DescriptionItem title="birthDay" content={userInfo ? userInfo.birthDay : "load failed...."} />
