@@ -152,7 +152,9 @@ router.delete("/user/:userId", async (req, res) => {
     const user = await User.findById(userId);
     if (user.able) user.able = false;
     if (user.status === "active") user.status = "withdrawal";
-    await user.save()
+    if (user.token !== "") user.token = "";
+    if (user.tokenExp !== "") user.tokenExp = "";
+    await user.save();
     return res.send({ user });
   } catch (err) {
     console.log(err);
