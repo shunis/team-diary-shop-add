@@ -130,7 +130,7 @@ router.put("/user/:userId", async (req, res) => {
     if (password) user.password = password;
     if (birthDay) user.birthDay = birthDay;
     await user.save();
-    return res.send({ user });
+    return res.send({ user, success: true });
 
     // let updateBody = {};
     // if (name) updateBody.name = name;
