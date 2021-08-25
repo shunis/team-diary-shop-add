@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Divider, Col, Row, Button, Image, Modal, Form, Input } from "antd";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -19,6 +19,7 @@ import { updateUser } from "../_actions/user_actions";
 
 function ProfileDrawer() {
   const profile = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [firstFavoriteImage, setFirstFavoriteImage] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -98,15 +99,6 @@ function ProfileDrawer() {
       .get(`${USER_SERVER}/user/${profile.userData._id}`)
       .then((response) => {
         setUserInfo(response.data.user);
-        console.log('userInfo -> ', userInfo)
-        // if (response.statusText === "OK") {
-        //   console.log("user1 -> ", response);
-        //   console.log("user2 -> ", response.data.user);
-        //   setUserInfo(response.data.user);
-        //   console.log("userInfo -> ", userInfo);
-        // } else {
-        //   alert("Failed to load user info...");
-        // }
       });
   };
 
@@ -233,12 +225,12 @@ function ProfileDrawer() {
                 password: values.password,
               };
 
-              dispatchEvent(updateUser(profile, dataToSubmit)).then(
+              dispatch(updateUser(profile, dataToSubmit)).then(
                 (response) => {
                   if (response.payload.success) {
                     alert(modalText);
                   } else {
-                    alert(response.payload.err);
+                    alert("update error");
                   }
                 }
               );
