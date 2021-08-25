@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { FAVORITE_SERVER } from "../../Config";
 import Axios from "axios";
 
@@ -15,13 +15,13 @@ function GuestFavorite(props) {
       setFavoriteNumber(response.data.favoriteNumber);
       if (response.data.success) {
       } else {
-        alert("Failed to read favorite number.");
+        message.error("Failed to read favorite number.");
       }
     });
   });
 
   const onClickLogin = () => {
-    alert("Login is required.");
+    message.warning("Login is required.");
   };
 
   return (

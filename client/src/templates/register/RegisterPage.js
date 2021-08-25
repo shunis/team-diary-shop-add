@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { registerUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -68,7 +68,7 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert(response.payload.err);
+              message.error(response.payload.err)
             }
           });
 

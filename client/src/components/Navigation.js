@@ -4,7 +4,7 @@ import axios from "axios";
 import { USER_SERVER } from "../templates/Config";
 import { withRouter } from "react-router";
 import { useSelector } from "react-redux";
-import { Menu, Drawer } from "antd";
+import { Menu, Drawer, message } from "antd";
 import {
   HomeTwoTone,
   HeartTwoTone,
@@ -38,7 +38,7 @@ function Navigation(props) {
         window.localStorage.setItem("userId", "");
         props.history.push("/login");
       } else {
-        alert("Logout Failed..!");
+        message.error("Logout Failed..!");
       }
     });
   };

@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { FAVORITE_SERVER } from "../../Config";
 
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
@@ -20,7 +20,7 @@ function Favorite(props) {
         setFavoriteNumber(response.data.favoriteNumber);
         if (response.data.success) {
         } else {
-          alert("Failed to read favorite number.");
+          message.error("Failed to read favorite number.");
         }
       }
     );
@@ -29,7 +29,7 @@ function Favorite(props) {
       if (response.data.success) {
         setFavored(response.data.favored);
       } else {
-        alert("Failed to read information.");
+        message.error("Failed to read information.");
       }
     });
   }, [variables]);
@@ -42,7 +42,7 @@ function Favorite(props) {
             setFavoriteNumber(FavoriteNumber - 1);
             setFavored(!favored);
           } else {
-            alert("Failed to remove list.");
+            message.error("Failed to remove list.");
           }
         }
       );
@@ -53,7 +53,7 @@ function Favorite(props) {
             setFavoriteNumber(FavoriteNumber + 1);
             setFavored(!favored);
           } else {
-            alert("Failed to add list.");
+            message.error("Failed to add list.");
           }
         }
       );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Divider, Col, Row, Button, Image, Modal, Form, Input } from "antd";
+import { Divider, Col, Row, Button, Image, Modal, Form, Input, message } from "antd";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
@@ -35,7 +35,7 @@ function ProfileDrawer() {
         // window.location.href = "/login";
         window.location.reload();
       } else {
-        alert("Logout Failed..!");
+        message.error("Logout Failed..!");
       }
     });
   };
@@ -90,7 +90,7 @@ function ProfileDrawer() {
           window.localStorage.setItem("rememberMe", "");
           window.location.reload();
         } else {
-          alert("Failed withdrawal user...!");
+          message.error("Failed withdrawal user...!");
         }
       });
   };
@@ -138,18 +138,34 @@ function ProfileDrawer() {
       <p className="site-description-item-profile-p">Personal</p>
       <Row>
         <Col span={12}>
-          <DescriptionItem title="email" content={userInfo ? userInfo.email : "load failed...."} />
+          <DescriptionItem
+            title="email"
+            content={userInfo ? userInfo.email : "load failed...."}
+          />
         </Col>
         <Col span={12}>
-          <DescriptionItem title="name" content={userInfo ? userInfo.name : "load failed...."} />
+          <DescriptionItem
+            title="name"
+            content={userInfo ? userInfo.name : "load failed...."}
+          />
         </Col>
       </Row>
       <Row>
         <Col span={12}>
-          <DescriptionItem title="joinDate" content={userInfo ? dateFormat(userInfo.joinDate, 'YYYY-MM-DD') : "load failed...."} />
+          <DescriptionItem
+            title="joinDate"
+            content={
+              userInfo
+                ? dateFormat(userInfo.joinDate, "YYYY-MM-DD")
+                : "load failed...."
+            }
+          />
         </Col>
         <Col span={12}>
-          <DescriptionItem title="birthDay" content={userInfo ? userInfo.birthDay : "load failed...."} />
+          <DescriptionItem
+            title="birthDay"
+            content={userInfo ? userInfo.birthDay : "load failed...."}
+          />
         </Col>
       </Row>
 
@@ -226,15 +242,13 @@ function ProfileDrawer() {
                 password: values.password,
               };
 
-              dispatch(updateUser(profile, dataToSubmit)).then(
-                (response) => {
-                  if (response.payload.success) {
-                    alert(modalText);
-                  } else {
-                    alert("update error");
-                  }
+              dispatch(updateUser(profile, dataToSubmit)).then((response) => {
+                if (response.payload.success) {
+                  message.success("The change has been completed.");
+                } else {
+                  message.error("update error");
                 }
-              );
+              });
               setSubmitting(false);
             }, 500);
           }}

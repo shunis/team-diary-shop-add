@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import { Popover, Button, Pagination } from "antd";
+import { Popover, Button, Pagination, message } from "antd";
 import { API_KEY, API_URL, FAVORITE_SERVER } from "../Config";
 import "../../assets/css/favoritePage.css";
 
@@ -22,7 +22,7 @@ function FavoritePage() {
       if (response.data.success) {
         setFavorites(response.data.favorites);
       } else {
-        alert("Failed to import favorites list.");
+        message.error("Failed to import favorites list.");
       }
     });
   };
@@ -38,7 +38,7 @@ function FavoritePage() {
         if (response.data.success) {
           fetchFavoriteMovie();
         } else {
-          alert("Failed to delete from list.");
+          message.error("Failed to delete from list.");
         }
       }
     );
