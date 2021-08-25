@@ -1,5 +1,11 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from "./types";
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  LOGOUT_USER,
+  UPDATE_USER,
+} from "./types";
 import { USER_SERVER } from "../templates/Config.js";
 
 export function registerUser(dataToSubmit) {
@@ -42,6 +48,17 @@ export function logoutUser() {
 
   return {
     type: LOGOUT_USER,
+    payload: request,
+  };
+}
+
+export function updateUser(profile, dataToSubmit) {
+  const request = axios
+    .put(`${USER_SERVER}/user/${profile.userData._id}`, dataToSubmit)
+    .then((response) => response.data);
+
+  return {
+    type: UPDATE_USER,
     payload: request,
   };
 }

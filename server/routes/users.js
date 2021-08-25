@@ -50,8 +50,8 @@ router.post("/register", (req, res) => {
     if (!user.email || !user.name)
       return res.status(400).send({ err: "Both email and name are required!" });
 
-    let activeUser = User.find({ email: user.email, able: true });
-    if (activeUser)
+    let activeUser = User.findOne({ email: user.email, able: true });
+    if (activeUser !== null)
       return res.json({ success: false, err: "Users already registered!" });
 
     user.save((err, doc) => {
@@ -123,12 +123,16 @@ router.put("/user/:userId", async (req, res) => {
     const { userId } = req.params;
     if (!isValidObjectId(userId))
       return res.status(400).send({ err: "invalid userId" });
-    const { name } = req.body;
-    if (name && typeof name !== "string")
-      return res.status(400).send({ err: "name are string" });
+    const { password, birthDay } = req.body;
+    if (password && typeof password !== "string")
+      return res.status(400).send({ err: "password are string" });
+
+    if (birthDay && typeof birthDay !== "string")
+      return res.status(400).send({ err: "birthDay are string" });
 
     let user = await User.findById(userId);
-    if (name) user.name = name;
+    if (password) user.password = password;
+    if (birthDay) user.birthDay = birthDay;
     await user.save();
     return res.send({ user });
 

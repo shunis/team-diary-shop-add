@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
   joinDate: {
     type: Date,
     require: true,
-    default: new Date().toString(),
+    default: moment().format('YYYY-MM-DD'),
   },
   birthDay: {
     type: String,

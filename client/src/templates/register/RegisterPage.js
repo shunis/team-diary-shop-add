@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -32,7 +32,6 @@ const tailFormItemLayout = {
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
-  const [formErrorMessage, setFormErrorMessage] = useState('')
   return (
     <Formik
       initialValues={{
