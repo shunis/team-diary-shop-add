@@ -50,9 +50,9 @@ router.post("/register", (req, res) => {
     if (!user.email || !user.name)
       return res.status(400).send({ err: "Both email and name are required!" });
 
-    let activeUser = User.findOne({ email: user.email, able: true });
-    if (activeUser !== null)
-      return res.json({ success: false, err: "Users already registered!" });
+    // let activeUser = User.findOne({ email: user.email, able: true });
+    // if (activeUser !== null)
+    //   return res.json({ success: false, err: "Users already registered!" });
 
     user.save((err, doc) => {
       if (err) return res.json({ success: false, err });
