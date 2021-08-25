@@ -15,5 +15,5 @@ export function dateTimeFormat(requestValue, format = "YYYY-MM-DD HH:mm:ss") {
 //* 숫자 천 단위 ,
 export function numberWithComma(requestValue) {
   if (requestValue !== 0 && !requestValue) return "";
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return requestValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
