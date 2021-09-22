@@ -32,6 +32,9 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/favorite", require("./routes/favorite"));
 app.use("/uploads", express.static("uploads"));
 
+// by park
+app.use('/api/product', require("./routes/product"));
+
 // end router path
 
 if (process.env.NODE_ENV === "production") {

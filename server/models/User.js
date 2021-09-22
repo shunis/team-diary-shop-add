@@ -38,12 +38,21 @@ const userSchema = mongoose.Schema({
     type: String,
     default: 'ROLE_USER',
   },
+  // 카트를 위한 필드 추가
+  cart: {
+    type: Array,
+    default: []
+  },
+  history: {
+    type: Array,
+    default: []
+  },
   token: {
     type: String,
   },
   tokenExp: {
     type: Number,
-  },
+  }
 });
 
 userSchema.pre("save", function (next) {

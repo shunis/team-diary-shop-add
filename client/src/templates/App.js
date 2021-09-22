@@ -15,7 +15,11 @@ import FavoritePage from "./favoritePage/FavoritePage";
 import MarketPlaceList from "./marketPlace/MarketPlaceList";
 import MarketPlaceDetail from "./marketPlace/MarketPlaceDetail";
 
-
+//* shop 
+import LandingPage from "../components/views/LandingPage/LandingPage.js";
+import UploadProductPage from "../components/views/UploadProductPage/UploadProductPage.js";
+import DetailProductPage from "../components/views/DetailProductPage/DetailProductPage";
+import CartPage from "../components/views/CartPage/CartPage";
 
 
 function App() {
@@ -34,6 +38,13 @@ function App() {
           {/* //* Marketplace */}
           <Route exact path="/marketPlace" component={Auth(MarketPlaceList, null)} />
           <Route exact path="/marketPlace/:nftId" component={Auth(MarketPlaceDetail, null)} />
+
+          {/* //* Shop */}
+          <Route exact path="/landing" component={Auth(LandingPage, true)} />
+          <Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
+          <Route exact path="/product/:productId" component={Auth(DetailProductPage, null)} />
+          <Route exact path="/user/cart" component={Auth(CartPage, true)} />
+
         </Switch>
       </div>
     </Suspense>

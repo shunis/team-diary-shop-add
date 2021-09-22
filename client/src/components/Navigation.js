@@ -4,7 +4,7 @@ import axios from "axios";
 import { USER_SERVER } from "../templates/Config";
 import { withRouter } from "react-router";
 import { useSelector } from "react-redux";
-import { Menu, Drawer, message } from "antd";
+import { Menu, Drawer, message, Badge } from "antd";
 import {
   HomeTwoTone,
   HeartTwoTone,
@@ -14,6 +14,9 @@ import {
   LogoutOutlined,
   LoginOutlined,
   UserOutlined,
+  HomeOutlined,
+  UploadOutlined,
+  ShoppingCartOutlined
 } from "@ant-design/icons";
 import ProfileDrawer from "./ProfileDrawer";
 
@@ -77,6 +80,27 @@ function Navigation(props) {
             <a onClick={logoutHandler}>Logout</a>
           </Menu.Item> */}
         </SubMenu>
+        <Menu.Item
+          key="landing"
+          icon={<HomeOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/landing">Home2</a>
+        </Menu.Item>
+        <Menu.Item
+          key="upload"
+          icon={<UploadOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/product/upload">upload</a>
+        </Menu.Item>
+        <Menu.Item
+          key="cart"
+          icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
+        >
+            <a href="/user/cart" className="head-example" style={{ marginRight: -22, color: '#667777' }} >
+              <Badge count={user.userData && user.userData.cart.length} offset={[0, 0]}>
+              </Badge>
+            </a>
+        </Menu.Item>
       </Menu>
     );
   } else {
