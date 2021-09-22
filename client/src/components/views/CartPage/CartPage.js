@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-// import { getCartItems, removeCartItem, onSuccessBuy } from '../../../_actions/user_actions';
-import { getCartItems } from '../../../_actions/user_actions';
-// import UserCardBlock from './Sections/UserCardBlock';
+import { getCartItems, removeCartItem, onSuccessBuy } from '../../../_actions/user_actions';
+import UserCardBlock from './Sections/UserCardBlock';
 import { Empty, Result } from 'antd';
-// import Paypal from '../../utils/Paypal';
+import Paypal from '../../utils/Paypal';
 
 function CartPage(props) {
     const dispatch = useDispatch();
@@ -22,51 +21,51 @@ function CartPage(props) {
                 props.user.userData.cart.forEach(item => {
                     cartItems.push(item.id)
                 })
-                // dispatch(getCartItems(cartItems, props.user.userData.cart))
-                //     .then(response => { calculateTotal(response.payload) })
+                dispatch(getCartItems(cartItems, props.user.userData.cart))
+                    .then(response => { calculateTotal(response.payload) })
             }
         }
     }, [props.user.userData])
 
 
-    // let calculateTotal = (cartDetail) => {
-    //     let total = 0;
+    let calculateTotal = (cartDetail) => {
+        let total = 0;
 
-    //     cartDetail.map(item => {
-    //         total += parseInt(item.price, 10) * item.quantity
-    //     })
+        cartDetail.map(item => {
+            total += parseInt(item.price, 10) * item.quantity
+        })
 
-    //     setTotal(total)
-    //     setShowTotal(true)
+        setTotal(total)
+        setShowTotal(true)
 
-    // }
+    }
 
 
-    // let removeFromCart = (productId) => {
+    let removeFromCart = (productId) => {
 
-    //     dispatch(removeCartItem(productId))
-    //         .then(response => {
+        dispatch(removeCartItem(productId))
+            .then(response => {
+                // console.log(response)
+                if (response.payload.productInfo.length <= 0) {
+                    setShowTotal(false)
+                }
 
-    //             if (response.payload.productInfo.length <= 0) {
-    //                 setShowTotal(false)
-    //             }
+            })
 
-    //         })
+    }
 
-    // }
-
-    // const transactionSuccess = (data) => {
-    //     dispatch(onSuccessBuy({
-    //         paymentData: data,
-    //         cartDetail: props.user.cartDetail
-    //     }))
-    //         .then(response => {
-    //             if (response.payload.success) {
-    //                 setShowTotal(false)
-    //                 setShowSuccess(true)
-    //             }
-    //         })
-    // }
+    const transactionSuccess = (data) => {
+        dispatch(onSuccessBuy({
+            paymentData: data,
+            cartDetail: props.user.cartDetail
+        }))
+            .then(response => {
+                if (response.payload.success) {
+                    setShowTotal(false)
+                    setShowSuccess(true)
+                }
+            })
+    }
 
 
 
@@ -75,7 +74,7 @@ function CartPage(props) {
             <h1>My Cart</h1>
 
             <div>
-                {/* <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart} /> */}
+                <UserCardBlock products={props.user.cartDetail} removeItem={removeFromCart} />
             </div>
 
             {ShowTotal ?
@@ -95,12 +94,12 @@ function CartPage(props) {
             }
 
 
-            {/* {ShowTotal &&
+            {ShowTotal &&
                 <Paypal
                     total={Total}
                     onSuccess={transactionSuccess}
                 />
-            } */}
+            }
 
         </div>
     )

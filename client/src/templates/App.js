@@ -20,6 +20,7 @@ import LandingPage from "../components/views/LandingPage/LandingPage.js";
 import UploadProductPage from "../components/views/UploadProductPage/UploadProductPage.js";
 import DetailProductPage from "../components/views/DetailProductPage/DetailProductPage";
 import CartPage from "../components/views/CartPage/CartPage";
+import HistoryPage from "../components/views/HistoryPage/HistoryPage";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
           <Route exact path="/product/:productId" component={Auth(DetailProductPage, null)} />
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
+          <Route exact path="/history" component={Auth(HistoryPage, true)} />
 
         </Switch>
       </div>

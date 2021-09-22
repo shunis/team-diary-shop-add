@@ -16,6 +16,7 @@ import {
   UserOutlined,
   HomeOutlined,
   UploadOutlined,
+  HistoryOutlined,
   ShoppingCartOutlined
 } from "@ant-design/icons";
 import ProfileDrawer from "./ProfileDrawer";
@@ -93,10 +94,17 @@ function Navigation(props) {
           <a href="/product/upload">upload</a>
         </Menu.Item>
         <Menu.Item
+          key="history"
+          icon={<HistoryOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/history">history</a>
+        </Menu.Item>
+        <Menu.Item
           key="cart"
           icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
         >
             <a href="/user/cart" className="head-example" style={{ marginRight: -22, color: '#667777' }} >
+              cart
               <Badge count={user.userData && user.userData.cart.length} offset={[0, 0]}>
               </Badge>
             </a>

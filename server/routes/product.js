@@ -127,19 +127,20 @@ router.get('/products_by_id', (req, res) => {
     //productId를 이용해서 DB에서  productId와 같은 상품의 정보를 가져온다.
 
     // 원본
-    // Product.find({ _id: { $in: productIds } })
-    //     .populate('writer')
-    //     .exec((err, product) => {
-    //         if (err) return res.status(400).send(err)
-    //         return res.status(200).send(product)
-    //     })
-
     Product.find({ _id: { $in: productIds } })
-    .populate('writer')
-    .exec((err, product) => {
-        if (err) return res.status(400).send(err)
-        return res.status(200).json({success: true, product})
-    })
+        .populate('writer')
+        .exec((err, product) => {
+            if (err) return res.status(400).send(err)
+            return res.status(200).send(product)
+        })
+
+    // 한뎁스 더 
+    // Product.find({ _id: { $in: productIds } })
+    // .populate('writer')
+    // .exec((err, product) => {
+    //     if (err) return res.status(400).send(err)
+    //     return res.status(200).json({success: true, product})
+    // })
 
 })
 
