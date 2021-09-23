@@ -8,6 +8,7 @@ import Checkbox from './Sections/CheckBox';
 import Radiobox from './Sections/RadioBox';
 import SearchFeature from './Sections/SearchFeature';
 import { continents, price } from './Sections/Datas';
+import { PRODUCT_SERVER } from "../../../templates/Config.js";
 
 function LandingPage() {
 
@@ -33,7 +34,7 @@ function LandingPage() {
     }, [])
 
     const getProducts = (body) => {
-        axios.post('/api/product/products', body)
+        axios.post(`${PRODUCT_SERVER}/products`, body)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data)
@@ -49,7 +50,7 @@ function LandingPage() {
             })
     }
 
-    const loadMoreHanlder = () => {
+    const loadMoreHandler = () => {
 
         let skip = Skip + Limit
         let body = {
@@ -176,7 +177,7 @@ function LandingPage() {
 
             {PostSize >= Limit &&
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={loadMoreHanlder}>더보기</button>
+                    <button onClick={loadMoreHandler}>더보기</button>
                 </div>
             }
         </div>

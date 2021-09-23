@@ -1,4 +1,5 @@
 import React from 'react'
+import { dateFormat } from '../../ParseData'
 
 function HistoryPage(props) {
 
@@ -42,7 +43,7 @@ function HistoryPage(props) {
                                 <td>{item.id}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
-                                <td>{item.dateOfPurchase}</td>
+                                <td>{dateFormat(item.dateOfPurchase, "YYYY-MM-DD")}</td>
                             </tr>
                         ))}
 
