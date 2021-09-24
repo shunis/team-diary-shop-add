@@ -21,7 +21,7 @@ const connect = mongoose
 
 app.use(cors());
 
-mongoose.set("debug", true);
+// mongoose.set("debug", true);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

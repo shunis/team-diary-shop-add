@@ -17,7 +17,8 @@ import {
   HomeOutlined,
   UploadOutlined,
   HistoryOutlined,
-  ShoppingCartOutlined
+  ShoppingCartOutlined,
+  CrownTwoTone
 } from "@ant-design/icons";
 import ProfileDrawer from "./ProfileDrawer";
 
@@ -77,9 +78,11 @@ function Navigation(props) {
               <ProfileDrawer />
             </Drawer>
           </Menu.Item>
-          {/* <Menu.Item key="Logout" icon={<LogoutOutlined />}>
-            <a onClick={logoutHandler}>Logout</a>
-          </Menu.Item> */}
+          {user.userData.role === 'ROLE_ADMIN' &&
+            <Menu.Item key="AdminPage" icon={<CrownTwoTone twoToneColor="##fff954" />}>
+              <a href="/adminPage">Admin Page</a>
+            </Menu.Item>
+          }
         </SubMenu>
         <Menu.Item
           key="landing"

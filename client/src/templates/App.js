@@ -10,6 +10,7 @@ import Navigation from "../components/Navigation";
 import LoginPage from "./login/LoginPage";
 import RegisterPage from "./register/RegisterPage";
 import FavoritePage from "./favoritePage/FavoritePage";
+import AdminPage from "./adminPage/AdminPage";
 
 //* MarketPlace
 import MarketPlaceList from "./marketPlace/MarketPlaceList";
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/favorite" component={Auth(FavoritePage, true)} />
+          <Route exact path="/adminPage" component={Auth(AdminPage, true)} />
 
           {/* //* Marketplace */}
           <Route exact path="/marketPlace" component={Auth(MarketPlaceList, null)} />

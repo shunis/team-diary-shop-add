@@ -34,7 +34,7 @@ function LandingPage() {
     }, [])
 
     const getProducts = (body) => {
-        axios.post(`${PRODUCT_SERVER}/products`, body)
+        axios.post(`${process.env.REACT_APP_PRODUCT_SERVER}products`, body)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data)
