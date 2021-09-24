@@ -24,7 +24,7 @@ export function registerUser(dataToSubmit) {
 
 export function loginUser(dataToSubmit) {
   const request = axios
-    .post(`${process.env.REACT_APP_USER_SERVER}/login`, dataToSubmit)
+    .post(`${process.env.REACT_APP_USER_SERVER}login`, dataToSubmit)
     .then((response) => response.data);
 
   return {
@@ -35,7 +35,7 @@ export function loginUser(dataToSubmit) {
 
 export function auth() {
   const request = axios
-    .get(`${process.env.REACT_APP_USER_SERVER}/auth`)
+    .get(`${process.env.REACT_APP_USER_SERVER}auth`)
     .then((response) => response.data);
 
   return {
@@ -46,7 +46,7 @@ export function auth() {
 
 export function logoutUser() {
   const request = axios
-    .get(`${process.env.REACT_APP_USER_SERVER}/logout`)
+    .get(`${process.env.REACT_APP_USER_SERVER}logout`)
     .then((response) => response.data);
 
   return {
@@ -57,7 +57,7 @@ export function logoutUser() {
 
 export function updateUser(profile, dataToSubmit) {
   const request = axios
-    .put(`${process.env.REACT_APP_USER_SERVER}/user/${profile.userData._id}`, dataToSubmit)
+    .put(`${process.env.REACT_APP_USER_SERVER}user/${profile.userData._id}`, dataToSubmit)
     .then((response) => response.data);
 
   return {
@@ -70,7 +70,7 @@ export function addToCart(id) {
   let body = {
       productId: id
   }
-  const request = axios.post(`${process.env.REACT_APP_USER_SERVER}/addToCart`, body)
+  const request = axios.post(`${process.env.REACT_APP_USER_SERVER}addToCart`, body)
       .then(response => response.data);
 
   return {

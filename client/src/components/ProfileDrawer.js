@@ -13,9 +13,10 @@ import {
   API_URL,
   IMAGE_BASE_URL,
   USER_SERVER,
+  SELLER_SERVER,
 } from "../templates/Config";
 
-import { LogoutOutlined, UserOutlined, HeartTwoTone } from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined, HeartTwoTone, DollarOutlined } from "@ant-design/icons";
 import { updateUser } from "../_actions/user_actions";
 
 function ProfileDrawer() {
@@ -27,6 +28,8 @@ function ProfileDrawer() {
   const [modalText, setModalText] = useState("Content of the modal");
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
+  const [requestSeller, setRequestSeller] = useState(false);
+
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
@@ -44,7 +47,17 @@ function ProfileDrawer() {
     const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
     fetchFavorites(endPoint);
     getUserInfo();
+    requestRoleSeller();
   }, []);
+
+  const requestRoleSeller = () => {
+    axios.post(`${SELLER_SERVER}request-register`, profile.userData._id)
+    .then((response) => {
+      console.log('localStorage.getItem("userId") -> ', profile.userData._id)
+      console.log(profile.userData);
+      setRequestSeller(response.data);
+    })
+  }
 
   const fetchFavorites = (endPoint) => {
     fetch(endPoint)
@@ -126,6 +139,7 @@ function ProfileDrawer() {
       },
     },
   };
+
 
   return (
     <div>
@@ -328,6 +342,38 @@ function ProfileDrawer() {
             );
           }}
         </Formik>
+      </Modal>
+      <Button className="site-description-item-profile-button"
+        type="primary"
+        ghost
+        icon={<DollarOutlined />}>
+          Request Seller
+      </Button>
+      <Modal
+        title="Request Seller"
+        visible={visible}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+      >
+        <Formik
+        initialValues={{
+          companyName: "",
+          companyAddress: "",
+        }}
+        validationSchema={Yup.object().shape({
+          companyName: Yup.string().required("companyName is required"),
+          companyAddress: Yup.string().required("companyAddress is required"),
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            let dataToSubmit = {
+              companyName: values.companyName,
+              companyAddress: values.companyAddress,
+            };
+          })
+        }}
+        ></Formik>
       </Modal>
       <Button danger onClick={logoutHandler} icon={<LogoutOutlined />}>
         Logout
