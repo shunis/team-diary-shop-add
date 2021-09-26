@@ -10,8 +10,6 @@ import SearchFeature from './Sections/SearchFeature';
 import { continents, price } from './Sections/Datas';
 import { PRODUCT_SERVER } from "../../../templates/Config.js";
 
-const { Content, Footer, Sider } = Layout;
-
 function LandingPage() {
 
     const [Products, setProducts] = useState([])
@@ -141,53 +139,49 @@ function LandingPage() {
 
 
     return (
-        <Layout>
-            <Content className="layout-content">
-            <Layout className="site-layout-background">
-                <Sider className="site-layout-background" width={300}>
-                    <Menu
-                        mode="inline"
-                        style={{ height: "100%",marginTop: 16 }}
-                        >
-                        <Radiobox list={price} handleFilters={filters => handleFilters(filters, "price")} />
-                        <Checkbox list={continents} handleFilters={filters => handleFilters(filters, "continents")} />
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
-                            <SearchFeature
-                                refreshFunction={updateSearchTerm}
-                                />
-                        </div>
-                        {/* <SubMenu key="priceMenu" icon={<DollarTwoTone />} title="Price">
-                            <Radiobox list={price} handleFilters={filters => handleFilters(filters, "price")} />
-                        </SubMenu> */}
+        <div style={{ width: '75%', margin: '3rem auto' }}>
 
-                    </Menu>
-                </Sider>
-                <Content className="content-list">
-                    <div style={{ textAlign: 'center' }}>
-                        <h2>Let's Travel Anywhere </h2>
-                    </div>
+            <div style={{ textAlign: 'center' }}>
+                <h2>Let's Travel Anywhere </h2>
+            </div>
 
-                    <Row gutter={[16, 16]} >
-                        {renderCards}
-                    </Row>
+            {/* Filter */}
 
-                    <br />
+            <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24}>
+                    {/* CheckBox */}
+                    <Checkbox list={continents} handleFilters={filters => handleFilters(filters, "continents")} />
+                </Col>
+                <Col lg={12} xs={24}>
+                    {/* RadioBox */}
+                    <Radiobox list={price} handleFilters={filters => handleFilters(filters, "price")} />
+                </Col>
+            </Row>
 
-                    {PostSize >= Limit &&
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button onClick={loadMoreHandler}>더보기</button>
-                        </div>
-                    }
+            {/* Search */}
 
-                </Content>
-    
-              {/* //todo more list button 넣어야함 */}
-            </Layout>
-            </Content>
-            <Footer className="footer-team-name">Team Diary</Footer>
-        </Layout>
-    );
+            <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
+                <SearchFeature
+                    refreshFunction={updateSearchTerm}
+                />
+            </div>
+
+            {/* Cards */}
+
+
+            <Row gutter={[16, 16]} >
+                {renderCards}
+            </Row>
+
+            <br />
+
+            {PostSize >= Limit &&
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={loadMoreHandler}>더보기</button>
+                </div>
+            }
+        </div>
+    )
 }
-    
 
 export default LandingPage

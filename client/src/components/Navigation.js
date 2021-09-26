@@ -57,20 +57,49 @@ function Navigation(props) {
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
             <Menu.Item key="All">
-              <a href="/marketPlace">All NFTs</a>
+              {/* <a href="/marketPlace">All NFTs</a> */}
+              <a href="/landing">All Products</a>
             </Menu.Item>
             <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
             <Menu.Item key="Utility">Utility</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
+        {/* // TODO Update Required ItemGroup */}
+        {/* <Menu.Item
+          key="landing"
+          icon={<HomeOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/landing">Home2</a>
+        </Menu.Item> */}
+        <Menu.Item
+          key="upload"
+          icon={<UploadOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/product/upload">upload</a>
+        </Menu.Item>
+        <Menu.Item
+          key="cart"
+          icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
+        >
+            <a href="/user/cart" className="head-example" style={{ marginRight: -22, color: '#667777' }} >
+              cart
+              <Badge style={{ marginLeft: 5, marginBottom: 4 }} count={user.userData && user.userData.cart.length} offset={[0, 0]}>
+              </Badge>
+            </a>
+        </Menu.Item>
+        <Menu.Item
+          key="history"
+          icon={<HistoryOutlined twoToneColor="#eb2f96" />}
+        >
+          <a href="/history">history</a>
+        </Menu.Item>
         <Menu.Item
           key="Favorite"
           icon={<HeartTwoTone twoToneColor="#eb2f96" />}
         >
           <a href="/favorite">Favorite</a>
         </Menu.Item>
-        {/* // TODO Update Required ItemGroup */}
         <SubMenu key="Settings" icon={<SettingTwoTone />} title="Setting">
           <Menu.Item key="Profile" icon={<UserOutlined />}>
             <a onClick={showDrawer}>Profile</a>
@@ -84,34 +113,6 @@ function Navigation(props) {
             </Menu.Item>
           }
         </SubMenu>
-        <Menu.Item
-          key="landing"
-          icon={<HomeOutlined twoToneColor="#eb2f96" />}
-        >
-          <a href="/landing">Home2</a>
-        </Menu.Item>
-        <Menu.Item
-          key="upload"
-          icon={<UploadOutlined twoToneColor="#eb2f96" />}
-        >
-          <a href="/product/upload">upload</a>
-        </Menu.Item>
-        <Menu.Item
-          key="history"
-          icon={<HistoryOutlined twoToneColor="#eb2f96" />}
-        >
-          <a href="/history">history</a>
-        </Menu.Item>
-        <Menu.Item
-          key="cart"
-          icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
-        >
-            <a href="/user/cart" className="head-example" style={{ marginRight: -22, color: '#667777' }} >
-              cart
-              <Badge count={user.userData && user.userData.cart.length} offset={[0, 0]}>
-              </Badge>
-            </a>
-        </Menu.Item>
       </Menu>
     );
   } else {
