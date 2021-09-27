@@ -398,6 +398,7 @@ function ProfileDrawer() {
                 userFrom: profile.userData,
                 userName: profile.userData.name,
                 userRole: profile.userData.role,
+                userEmail: profile.userData.email,
                 companyName: values.companyName,
                 companyAddress: values.companyAddress,
               };

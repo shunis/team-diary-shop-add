@@ -12,6 +12,9 @@ const sellerSchema = mongoose.Schema({
 	userRole: {
 		type: String
 	},
+	userEmail: {
+		type: String
+	},
 	companyName: {
 		type: String
 	},
