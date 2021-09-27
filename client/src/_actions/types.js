@@ -18,3 +18,4 @@ export const ADD_TO_FAVORITE = "add_to_favorite";
 
 // seller
 export const REQUEST_SELLER = "request_seller";
+export const SELLER_CHANGE_ROLE = "seller_change_role";

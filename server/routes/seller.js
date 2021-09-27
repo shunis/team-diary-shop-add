@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { Seller } = require("../models/Seller");
+const { User } = require("../models/User");
 const async = require("async");
+const { isValidObjectId } = require("mongoose");
 
 // * 판매자 리스트
 router.get("/seller", async (req, res) => {
@@ -21,6 +23,36 @@ router.post("/request-seller", (req, res) => {
 		if (err) return res.status(400).send(err);
 		return res.status(200).json({ success: true, seller });
 	});
+});
+
+// * 판매자 role 변경
+router.put("/update-role/:sellerId", async (req, res) => {
+	try {
+		const { sellerId } = req.params;
+		if (!isValidObjectId(sellerId)) return res.status(400).send({ err: "invalid sellerId "});
+		const seller = await Seller.findById(sellerId);
+		if (seller.userRole === "ROLE_USER") {
+			seller.userRole = "ROLE_SELLER";
+		} else {
+			seller.userRole = "ROLE_USER";
+		}
+		// console.log('seller ', seller)
+		// console.log('seller.userFrom ', seller.userFrom)
+		if (!isValidObjectId(seller.userFrom)) return res.status(400).send({ err: "invalid userId" });
+		const user = await User.findOne(seller.userFrom);
+		// console.log('user ', user)
+		if (user.role === "ROLE_USER") {
+			user.role = "ROLE_SELLER";
+		} else {
+			user.role = "ROLE_USER";
+		}
+		await seller.save();
+		await user.save();
+		return res.send({ success: "Update User Role" });
+	} catch (err) {
+		console.log(err);
+		return res.status(500).send({ err: err.message });
+	}
 });
 
 module.exports = router;
