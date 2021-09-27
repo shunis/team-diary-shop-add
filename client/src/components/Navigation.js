@@ -82,11 +82,11 @@ function Navigation(props) {
           key="cart"
           icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
         >
-            <a href="/user/cart" className="head-example" style={{ marginRight: -22, color: '#667777' }} >
-              cart
-              <Badge style={{ marginLeft: 5, marginBottom: 4 }} count={user.userData && user.userData.cart.length} offset={[0, 0]}>
-              </Badge>
-            </a>
+        <a href="/user/cart" className="head-example" style={{ color: '#667777' }} >
+          cart
+          <Badge style={{ marginLeft: 5, marginBottom: 4 }} count={user.userData && user.userData.cart.length} offset={[0, 0]}>
+          </Badge>
+        </a>
         </Menu.Item>
         <Menu.Item
           key="history"
