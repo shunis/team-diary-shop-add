@@ -15,7 +15,7 @@ router.get("/seller", async (req, res) => {
 });
 
 // * 판매자 자격 신청
-router.post("/request-register", (req, res) => {
+router.post("/request-seller", (req, res) => {
 	const seller = new Seller(req.body);
 	seller.save((err, doc) => {
 		if (err) return res.status(400).send(err);

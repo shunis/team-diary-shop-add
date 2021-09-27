@@ -6,6 +6,12 @@ const sellerSchema = mongoose.Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	userName: {
+		type: String
+	},
+	userRole: {
+		type: String
+	},
 	companyName: {
 		type: String
 	},

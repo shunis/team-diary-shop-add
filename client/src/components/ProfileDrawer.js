@@ -18,17 +18,24 @@ import {
 
 import { LogoutOutlined, UserOutlined, HeartTwoTone, DollarOutlined } from "@ant-design/icons";
 import { updateUser } from "../_actions/user_actions";
+import { requestSeller } from "../_actions/seller_actions";
 
 function ProfileDrawer() {
   const profile = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  let dataToSubmit;
+
+
   const [firstFavoriteImage, setFirstFavoriteImage] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [visibleSeller, setVisibleSeller] = useState(false);
   const [modalText, setModalText] = useState("Content of the modal");
+  const [madalTextSeller, setModalTextSeller] = useState("Content of the modal")
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [confirmLoadingSeller, setConfirmLoadingSeller] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
-  const [requestSeller, setRequestSeller] = useState(false);
+  const [requestSellerUser, setRequestSellerUser] = useState(false);
 
 
   const logoutHandler = () => {
@@ -47,15 +54,14 @@ function ProfileDrawer() {
     const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
     fetchFavorites(endPoint);
     getUserInfo();
-    requestRoleSeller();
+    // requestRoleSeller();
   }, []);
 
   const requestRoleSeller = () => {
-    axios.post(`${SELLER_SERVER}request-register`, profile.userData._id)
+    axios.post(`${SELLER_SERVER}request-seller`, dataToSubmit)
     .then((response) => {
-      console.log('localStorage.getItem("userId") -> ', profile.userData._id)
-      console.log(profile.userData);
-      setRequestSeller(response.data);
+      console.log('dataToSubmit -> ', dataToSubmit);
+      setRequestSellerUser(response.data);
     })
   }
 
@@ -93,6 +99,26 @@ function ProfileDrawer() {
   const handleCancel = () => {
     setVisible(false);
   };
+
+  const showModalSeller = () => {
+    getUserInfo();
+    setVisibleSeller(true);
+  }
+
+  const handleOkSeller = () => {
+    setModalTextSeller(
+      "The change has been completed. The modal will be closed after three second"
+    );
+    setConfirmLoadingSeller(true);
+    setTimeout(() => {
+      setVisibleSeller(false);
+      setConfirmLoadingSeller(false);
+    }, 3000);
+  };
+
+  const handleCancelSeller = () => {
+    setVisibleSeller(false);
+  }
 
   const withdrawalUser = () => {
     axios
@@ -346,34 +372,114 @@ function ProfileDrawer() {
       <Button className="site-description-item-profile-button"
         type="primary"
         ghost
-        icon={<DollarOutlined />}>
+        icon={<DollarOutlined />}
+        onClick={showModalSeller}>
           Request Seller
       </Button>
       <Modal
         title="Request Seller"
-        visible={visible}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
+        visible={visibleSeller}
+        onOk={handleOkSeller}
+        confirmLoading={confirmLoadingSeller}
+        onCancel={handleCancelSeller}
       >
         <Formik
-        initialValues={{
-          companyName: "",
-          companyAddress: "",
-        }}
-        validationSchema={Yup.object().shape({
-          companyName: Yup.string().required("companyName is required"),
-          companyAddress: Yup.string().required("companyAddress is required"),
-        })}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            let dataToSubmit = {
-              companyName: values.companyName,
-              companyAddress: values.companyAddress,
-            };
-          })
-        }}
-        ></Formik>
+          initialValues={{
+            companyName: "",
+            companyAddress: "",
+          }}
+          validationSchema={Yup.object().shape({
+            companyName: Yup.string().required("companyName is required"),
+            companyAddress: Yup.string().required("companyAddress is required"),
+          })}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              dataToSubmit = {
+                userFrom: profile.userData,
+                userName: profile.userData.name,
+                userRole: profile.userData.role,
+                companyName: values.companyName,
+                companyAddress: values.companyAddress,
+              };
+
+              dispatch(requestSeller(dataToSubmit)).then((response) => {
+                if (response.payload.success) {
+                  message.success("Request Complete!");
+                } else {
+                  message.error("Request Failed.");
+                }
+              });
+              setSubmitting(false);
+            }, 500);
+          }}
+        >
+          {(props) => {
+            const {
+              values,
+              touched,
+              errors,
+              isSubmitting,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+            } = props;
+            return (
+              <div>
+                <h2 className="site-description-item-profile-modal-header">Request Seller</h2>
+                <Form style={{ minWidth: "375px" }}
+                  {...formItemLayout}
+                  onSubmit={handleSubmit}
+                >
+                  <Form.Item required label="companyName" hasFeedback>
+                    <Input
+                      id="companyName"
+                      placeholder="Enter your companyName"
+                      type="companyName"
+                      value={values.companyName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.companyName && touched.companyName ? "text-input error" : "text-input"
+                      }
+                    />
+                    {errors.companyName && touched.companyName && (
+                      <div className="input-feedback">{errors.companyName}</div>
+                    )}
+                  </Form.Item>
+
+                  <Form.Item required label="companyAddress">
+                    <Input
+                      id="companyAddress"
+                      placeholder="Enter your companyAddress"
+                      type="companyAddress"
+                      value={values.companyAddress}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.companyAddress && touched.companyAddress
+                        ? "text-input error" : "text-input"
+                      }
+                    />
+                    {errors.companyAddress && touched.companyAddress && (
+                      <div className="input-feedback">{errors.companyAddress}</div>
+                    )}
+                  </Form.Item>
+
+                  <Form.Item {...tailFormItemLayout}>
+                    <Button
+                      onClick={handleSubmit}
+                      type="primary"
+                      disabled={isSubmitting}
+                      className="site-description-item-profile-button"
+                    >
+                      Submit
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </div>
+            );
+          }}
+        </Formik>
       </Modal>
       <Button danger onClick={logoutHandler} icon={<LogoutOutlined />}>
         Logout
