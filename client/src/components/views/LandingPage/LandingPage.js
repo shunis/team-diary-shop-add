@@ -8,7 +8,7 @@ import Checkbox from './Sections/CheckBox';
 import Radiobox from './Sections/RadioBox';
 import SearchFeature from './Sections/SearchFeature';
 import { continents, price } from './Sections/Datas';
-import { PRODUCT_SERVER } from "../../../templates/Config.js";
+import { numberWithComma } from '../../ParseData';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -76,7 +76,7 @@ function LandingPage() {
             >
                 <Meta
                     title={product.title}
-                    description={`$${product.price}`}
+                    description={`$${numberWithComma(product.price)}`}
                 />
             </Card>
         </Col>
