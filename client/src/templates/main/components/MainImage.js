@@ -11,7 +11,7 @@ function MainImage(props) {
         rgba(0,0,0,0)39%,
         rgba(0,0,0,0)41%,
         rgba(0,0,0,0.65)100%),
-        url('${props.image}'), #1c1c1c`,
+        url('https://www.befreetour.com/img/produk/chelsea-football-club-tour/chelsea-football-club-tour_16e1574a5837580060df8effadc32412d938ef0b.jpg'), #1c1c1c`,
         height: "500px",
         backgroundSize: "100%, cover",
         backgroundPosition: "center, center",
