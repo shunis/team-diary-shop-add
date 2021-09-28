@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Button, Form, Input } from 'antd'
+import { Button, Form, Input } from 'antd'
 import FileUpload from '../../utils/FileUpload';
 import Axios from 'axios';
 
@@ -45,7 +45,6 @@ function UploadProductPage(props) {
     }
 
     const submitHandler = (event) => {
-        console.log('ddd')
         // 확인 이벤트 발생 위해 임시 주석
         // event.preventDefault();
 
@@ -66,7 +65,7 @@ function UploadProductPage(props) {
             continents: Continent
         }
 
-        Axios.post('/api/product', body)
+        Axios.post(`${process.env.REACT_APP_PRODUCT_SERVER}`, body)
             .then(response => {
                 if (response.data.success) {
                     alert('상품 업로드에 성공 했습니다.')
@@ -114,8 +113,6 @@ function UploadProductPage(props) {
                     확인
                 </Button>
             </Form>
-
-
         </div>
     )
 }

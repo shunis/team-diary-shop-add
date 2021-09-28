@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 // import { FaCode } from "react-icons/fa";
 import axios from "axios";
-import { Layout, Menu, Select, Input, Col, Card, Row, Carousel } from 'antd';
+import { Col, Card, Row } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import Checkbox from './Sections/CheckBox';
 import Radiobox from './Sections/RadioBox';
 import SearchFeature from './Sections/SearchFeature';
 import { continents, price } from './Sections/Datas';
-import { PRODUCT_SERVER } from "../../../templates/Config.js";
 
 function LandingPage() {
 

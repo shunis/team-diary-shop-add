@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
-import axios from "axios";
-import { USER_SERVER } from "../templates/Config";
 import { withRouter } from "react-router";
 import { useSelector } from "react-redux";
-import { Menu, Drawer, message, Badge } from "antd";
+import { Menu, Drawer, Badge } from "antd";
 import {
   HomeTwoTone,
-  HeartTwoTone,
   ShopTwoTone,
   EditTwoTone,
   SettingTwoTone,
@@ -22,7 +19,7 @@ import ProfileDrawer from "./ProfileDrawer";
 
 const { SubMenu } = Menu;
 
-function Navigation(props) {
+function Navigation() {
   const user = useSelector((state) => state.user);
 
   const [visible, setVisible] = useState(false);
@@ -35,17 +32,6 @@ function Navigation(props) {
     setVisible(false);
   };
 
-  const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then((response) => {
-      if (response.status === 200) {
-        window.localStorage.setItem("userId", "");
-        props.history.push("/login");
-      } else {
-        message.error("Logout Failed..!");
-      }
-    });
-  };
-
   if (user.userData && user.userData.isAuth === true) {
     return (
       <Menu className="navigation" mode="horizontal">
@@ -55,21 +41,11 @@ function Navigation(props) {
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
             <Menu.Item key="All">
-              {/* <a href="/marketPlace">All NFTs</a> */}
               <a href="/landing">All Products</a>
             </Menu.Item>
-            {/* <Menu.Item key="Art">Art</Menu.Item>
-            <Menu.Item key="Sports">Sports</Menu.Item>
-            <Menu.Item key="Utility">Utility</Menu.Item> */}
           </Menu.ItemGroup>
         </SubMenu>
         {/* // TODO Update Required ItemGroup */}
-        {/* <Menu.Item
-          key="landing"
-          icon={<HomeOutlined twoToneColor="#eb2f96" />}
-        >
-          <a href="/landing">Home2</a>
-        </Menu.Item> */}
         {user.userData.role === 'ROLE_SELLER' &&
           <Menu.Item
             key="upload"
@@ -124,11 +100,8 @@ function Navigation(props) {
         <SubMenu key="Marketplace" icon={<ShopTwoTone />} title="Marketplace">
           <Menu.ItemGroup title="Category">
             <Menu.Item key="All">
-              <a href="/marketPlace">All NFTs</a>
+              <a href="/landing">All NFTs</a>
             </Menu.Item>
-            {/* <Menu.Item key="Art">Art</Menu.Item>
-            <Menu.Item key="Sports">Sports</Menu.Item>
-            <Menu.Item key="Utility">Utility</Menu.Item> */}
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="Login" icon={<LoginOutlined />}>

@@ -6,7 +6,6 @@ import "../../assets/css/favoritePage.css";
 
 function FavoritePage() {
   const [favorites, setFavorites] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
 
   useEffect(() => {
@@ -66,19 +65,12 @@ function FavoritePage() {
     fetch(endpoint)
       .then((response) => response.json())
       .then((response) => {
-        setCurrentPage(response.page);
         setTotalPage(response.total_pages);
       });
   };
 
   //TODO pagination or loadMore
-  const loadMoreItem = () => {
-    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&;amgiage=ko-Korean&page=${currentPage + 1}`;
-    fetchNFT(endpoint);
-  };
-
 	const onChangePage = page => {
-		setCurrentPage(page)
 		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&;amgiage=ko-Korean&page=${page}`;
 		fetchNFT(endpoint)
 	}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 
@@ -16,19 +16,17 @@ function FileUpload(props) {
         }
         formData.append("file", files[0])
 
-        axios.post('/api/product/image', formData, config)
+        axios.post(`${process.env.REACT_APP_PRODUCT_SERVER}image`, formData, config)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data)
                     setImages([...Images, response.data.filePath])
                     props.refreshFunction([...Images, response.data.filePath])
-
                 } else {
                     alert('파일을 저장하는데 실패했습니다.')
                 }
             })
     }
-
 
     const deleteHandler = (image) => {
         const currentIndex = Images.indexOf(image);
@@ -36,9 +34,7 @@ function FileUpload(props) {
         newImages.splice(currentIndex, 1)
         setImages(newImages)
         props.refreshFunction(newImages)
-
     }
-
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -56,21 +52,16 @@ function FileUpload(props) {
                 )}
             </Dropzone>
 
-            
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll' }}>
 
                 {Images.map((image, index) => (
                     <div onClick={() => deleteHandler(image)} key={index}>
                         <img style={{ minWidth: '300px', width: '300px', height: '240px' }}
-                            src={`http://localhost:5000/${image}`}
+                            src={`${process.env.REACT_APP_IMAGE_REQUEST}${image}`} alt="uploadImage"
                         />
                     </div>
                 ))}
-
-
             </div>
- 
-
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-// import { FaCode } from "react-icons/fa";
 import axios from "axios";
-import { Layout, Menu, Select, Input, Col, Card, Row, Carousel } from 'antd';
+import { Layout, Menu, Col, Card, Row, Button } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import Checkbox from './Sections/CheckBox';
@@ -175,7 +174,7 @@ function LandingPage() {
 
                     {PostSize >= Limit &&
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button onClick={loadMoreHandler}>더보기</button>
+                            <Button onClick={loadMoreHandler}>더보기</Button>
                         </div>
                     }
 

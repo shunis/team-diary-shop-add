@@ -11,7 +11,7 @@ function DetailProductPage(props) {
     const [Product, setProduct] = useState({})
 
     useEffect(() => {
-        axios.get(`/api/product/products_by_id?id=${productId}&type=single`)
+        axios.get(`${process.env.REACT_APP_PRODUCT_SERVER}products_by_id?id=${productId}&type=single`)
             .then(response => {
                 setProduct(response.data[0])
             })
@@ -39,11 +39,6 @@ function DetailProductPage(props) {
                     <ProductInfo detail={Product} />
                 </Col>
             </Row>
-
-
-
-
-
         </div>
     )
 }

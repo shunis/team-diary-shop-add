@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { API_URL, API_KEY, IMAGE_BASE_URL } from "../Config";
 import MainImage from "./components/MainImage";
 import { Row, Card, Col, Button } from "antd";
 import "../../assets/css/mainPage.css";
 import "antd/dist/antd.css";
-import MainImageSlider from "./components/MainImageSlider";
 
 const { Meta } = Card;
 
@@ -46,7 +44,7 @@ function Main() {
     <div className="main-page">
       {mainTitleImage && (
         <MainImage
-          image={`http://localhost:5000/${firstMainProductImage}`}
+          image={`${process.env.REACT_APP_IMAGE_REQUEST}${firstMainProductImage}`}
           title={firstMainProduct.title}
           text={firstMainProduct.description}
         />
@@ -65,7 +63,7 @@ function Main() {
                     <img
                       className="card-image-default-size"
                       alt="Popular item first"
-                      src={`http://localhost:5000/${firstMainProductImage}`}
+                      src={`${process.env.REACT_APP_IMAGE_REQUEST}${firstMainProductImage}`}
                     />
                   </a>
                 }
@@ -82,7 +80,7 @@ function Main() {
                     <img
                       className="card-image-default-size"
                       alt="Popular item second"
-                      src={`http://localhost:5000/${secondMainProductImage}`}
+                      src={`${process.env.REACT_APP_IMAGE_REQUEST}${secondMainProductImage}`}
                     />
                   </a>
                 }
@@ -99,7 +97,7 @@ function Main() {
                     <img
                       className="card-image-default-size"
                       alt="Popular item third"
-                      src={`http://localhost:5000/${thirdMainProductImage}`}
+                      src={`${process.env.REACT_APP_IMAGE_REQUEST}${thirdMainProductImage}`}
                     />
                   </a>
                 }
@@ -116,7 +114,7 @@ function Main() {
                     <img
                       className="card-image-default-size"
                       alt="Popular item four"
-                      src={`http://localhost:5000/${fourMainProductImage}`}
+                      src={`${process.env.REACT_APP_IMAGE_REQUEST}${fourMainProductImage}`}
                     />
                   </a>
                 }

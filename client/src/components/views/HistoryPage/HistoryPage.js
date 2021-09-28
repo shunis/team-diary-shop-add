@@ -28,7 +28,7 @@ function HistoryPage(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>Payment Id</th>
+                        <th>Product Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Date of Purchase</th>
@@ -40,14 +40,12 @@ function HistoryPage(props) {
                     {props.user.userData && props.user.userData.history &&
                         props.user.userData.history.map(item => (
                             <tr key={item.id}>
-                                <td>{item.id}</td>
+                                <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
                                 <td>{dateFormat(item.dateOfPurchase, "YYYY-MM-DD")}</td>
                             </tr>
                         ))}
-
-
                 </tbody>
             </table>
         </div>

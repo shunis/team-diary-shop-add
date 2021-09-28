@@ -1,8 +1,6 @@
 import React, {	useEffect, useState } from 'react';
 import Axios from 'axios';
-import { Button } from 'antd';
 import { dateFormat } from '../../components/ParseData'
-import { sellerChangeRole } from "../../_actions/seller_actions"
 import "../../assets/css/adminPage.css";
 
 function AdminPage() {
@@ -78,9 +76,7 @@ function AdminPage() {
 						<td>{seller.userRole}</td>
 						<td>{seller.companyName}</td>
 						<td>{seller.companyAddress}</td>
-						<td>
-							<a>change role</a>
-						</td>
+						<td>change role</td>
 					</tr>
 					))}
 			</tbody>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Divider, Col, Row, Button, Image, Modal, Form, Input, message } from "antd";
+import { Divider, Col, Row, Button, Modal, Form, Input, message } from "antd";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik } from "formik";
@@ -8,14 +8,9 @@ import * as Yup from "yup";
 import { dateFormat } from "./ParseData";
 
 import "../assets/css/profileDrawer.css";
-import {
-  API_KEY,
-  API_URL,
-  IMAGE_BASE_URL,
-  USER_SERVER
-} from "../templates/Config";
+import { USER_SERVER } from "../templates/Config";
 
-import { LogoutOutlined, UserOutlined, HeartTwoTone, DollarOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined, DollarOutlined } from "@ant-design/icons";
 import { updateUser } from "../_actions/user_actions";
 import { requestSeller } from "../_actions/seller_actions";
 
@@ -26,17 +21,14 @@ function ProfileDrawer() {
   let dataToSubmit;
 
 
-  const [firstFavoriteImage, setFirstFavoriteImage] = useState([]);
   const [visible, setVisible] = useState(false);
   const [visibleSeller, setVisibleSeller] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
-  const [madalTextSeller, setModalTextSeller] = useState("Content of the modal")
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [confirmLoadingSeller, setConfirmLoadingSeller] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
 
   const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then((response) => {
+    axios.get(`${process.env.REACT_APP_USER_SERVER}logout`).then((response) => {
       if (response.status === 200) {
         window.localStorage.setItem("userId", "");
         // window.location.href = "/login";
@@ -48,19 +40,8 @@ function ProfileDrawer() {
   };
 
   useEffect(() => {
-    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
-    fetchFavorites(endPoint);
     getUserInfo();
-    // requestRoleSeller();
   }, []);
-
-  const fetchFavorites = (endPoint) => {
-    fetch(endPoint)
-      .then((result) => result.json())
-      .then((result) => {
-        setFirstFavoriteImage(result.results[0]);
-      });
-  };
 
   const DescriptionItem = ({ title, content }) => (
     <div className="site-description-item-profile-wrapper">
@@ -75,9 +56,6 @@ function ProfileDrawer() {
   };
 
   const handleOk = () => {
-    setModalText(
-      "The change has been completed. The modal will be closed after three second"
-    );
     setConfirmLoading(true);
     setTimeout(() => {
       setVisible(false);
@@ -95,9 +73,6 @@ function ProfileDrawer() {
   }
 
   const handleOkSeller = () => {
-    setModalTextSeller(
-      "The change has been completed. The modal will be closed after three second"
-    );
     setConfirmLoadingSeller(true);
     setTimeout(() => {
       setVisibleSeller(false);
@@ -111,7 +86,7 @@ function ProfileDrawer() {
 
   const withdrawalUser = () => {
     axios
-      .delete(`${USER_SERVER}/user/${profile.userData._id}`)
+      .delete(`${process.env.REACT_APP_USER_SERVER}user/${profile.userData._id}`)
       .then((response) => {
         if (response.status === 200) {
           window.localStorage.setItem("userId", "");
@@ -125,7 +100,7 @@ function ProfileDrawer() {
 
   const getUserInfo = () => {
     axios
-      .get(`${USER_SERVER}/user/${profile.userData._id}`)
+      .get(`${process.env.REACT_APP_USER_SERVER}user/${profile.userData._id}`)
       .then((response) => {
         setUserInfo(response.data.user);
       });
@@ -197,44 +172,6 @@ function ProfileDrawer() {
           />
         </Col>
       </Row>
-
-      <Divider />
-      {/* <p className="site-description-item-profile-p">Favorite</p>
-      <div className="site-description-item-profile-favorite-image">
-        <Image
-          width={120}
-          height={180}
-          src={`${IMAGE_BASE_URL}w500${firstFavoriteImage.poster_path}`}
-        />
-      </div>
-      <div className="site-description-item-profile-favorite-image">
-        <Image
-          width={120}
-          height={180}
-          src={`${IMAGE_BASE_URL}w500${firstFavoriteImage.poster_path}`}
-        />
-      </div>
-      <div className="site-description-item-profile-favorite-image">
-        <Image
-          width={120}
-          height={180}
-          src={`${IMAGE_BASE_URL}w500${firstFavoriteImage.poster_path}`}
-        />
-      </div>
-      <div className="site-description-item-profile-favorite-image">
-        <Image
-          width={120}
-          height={180}
-          src={`${IMAGE_BASE_URL}w500${firstFavoriteImage.poster_path}`}
-        />
-      </div> */}
-      {/* <Button
-        className="site-description-item-profile-favorite-button"
-        danger
-        icon={<HeartTwoTone twoToneColor="#eb2f96" />}
-      >
-        More Favorite Item
-      </Button> */}
 
       <Divider />
       <Button
