@@ -155,5 +155,4 @@ router.get("/all-product", async (req, res) => {
     }
 });
 
-
 module.exports = router;

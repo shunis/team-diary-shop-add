@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Seller } = require("../models/Seller");
 const { User } = require("../models/User");
-const async = require("async");
 const { isValidObjectId } = require("mongoose");
 
 // * 판매자 리스트

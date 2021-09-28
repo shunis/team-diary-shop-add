@@ -58,9 +58,9 @@ function Navigation(props) {
               {/* <a href="/marketPlace">All NFTs</a> */}
               <a href="/landing">All Products</a>
             </Menu.Item>
-            <Menu.Item key="Art">Art</Menu.Item>
+            {/* <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
-            <Menu.Item key="Utility">Utility</Menu.Item>
+            <Menu.Item key="Utility">Utility</Menu.Item> */}
           </Menu.ItemGroup>
         </SubMenu>
         {/* // TODO Update Required ItemGroup */}
@@ -126,9 +126,9 @@ function Navigation(props) {
             <Menu.Item key="All">
               <a href="/marketPlace">All NFTs</a>
             </Menu.Item>
-            <Menu.Item key="Art">Art</Menu.Item>
+            {/* <Menu.Item key="Art">Art</Menu.Item>
             <Menu.Item key="Sports">Sports</Menu.Item>
-            <Menu.Item key="Utility">Utility</Menu.Item>
+            <Menu.Item key="Utility">Utility</Menu.Item> */}
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="Login" icon={<LoginOutlined />}>
