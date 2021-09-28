@@ -199,7 +199,7 @@ function ProfileDrawer() {
       </Row>
 
       <Divider />
-      <p className="site-description-item-profile-p">Favorite</p>
+      {/* <p className="site-description-item-profile-p">Favorite</p>
       <div className="site-description-item-profile-favorite-image">
         <Image
           width={120}
@@ -227,14 +227,14 @@ function ProfileDrawer() {
           height={180}
           src={`${IMAGE_BASE_URL}w500${firstFavoriteImage.poster_path}`}
         />
-      </div>
-      <Button
+      </div> */}
+      {/* <Button
         className="site-description-item-profile-favorite-button"
         danger
         icon={<HeartTwoTone twoToneColor="#eb2f96" />}
       >
         More Favorite Item
-      </Button>
+      </Button> */}
 
       <Divider />
       <Button

@@ -53,7 +53,7 @@ router.post('/products', (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let term = req.body.searchTerm
-    let findArgs = {};
+    let findArgs = { able: true };
 
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
@@ -143,6 +143,17 @@ router.get('/products_by_id', (req, res) => {
     // })
 
 })
+
+//* 전체 상품 가져오기
+router.get("/all-product", async (req, res) => {
+    try {
+        const products = await Product.find({able: true});
+        return res.send({ products: products });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send({ err: err.message });
+    }
+});
 
 
 module.exports = router;

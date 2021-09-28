@@ -4,153 +4,124 @@ import MainImage from "./components/MainImage";
 import { Row, Card, Col, Button } from "antd";
 import "../../assets/css/mainPage.css";
 import "antd/dist/antd.css";
+import MainImageSlider from "./components/MainImageSlider";
 
 const { Meta } = Card;
 
 function Main() {
-  const [movies, setMovies] = useState([]);
-  const [MainTitleImage, setMainTitleImage] = useState(null);
-  const [FirstMainImage, setFirstMainImage] = useState([]);
-  const [SecondMainImage, setSecondMainImage] = useState([]);
-  const [ThirdMainImage, setThirdMainImage] = useState([]);
-  const [FourthMainImage, setFourthMainImage] = useState([]);
+  const [mainTitleImage, setMainTitleImage] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [firstMainProduct, setFirstMainProduct] = useState([]);
+  const [firstMainProductImage, setFirstMainProductImage] = useState([]);
+  const [secondMainProduct, setSecondMainProduct] = useState([]);
+  const [secondMainProductImage, setSecondMainProductImage] = useState([]);
+  const [thirdMainProduct, setThirdMainProduct] = useState([]);
+  const [thirdMainProductImage, setThirdMainProductImage] = useState([]);
+  const [fourMainProduct, setFourMainProduct] = useState([]);
+  const [fourMainProductImage, setFourMainProductImage] = useState([]);
 
   useEffect(() => {
-    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&;language=ko-KR&page=1`;
-    fetchMovies(endPoint);
+    const allProductApi = `${process.env.REACT_APP_PRODUCT_SERVER}all-product`
+    fetchProducts(allProductApi);
   }, []);
 
-  const fetchMovies = (endPoint) => {
-    fetch(endPoint)
-      .then((result) => result.json())
-      .then((result) => {
-        setMovies([...movies, ...result.results]);
-        setMainTitleImage(result.results[0]);
-        setFirstMainImage(result.results[0]);
-        setSecondMainImage(result.results[1]);
-        setThirdMainImage(result.results[2]);
-        setFourthMainImage(result.results[3]);
-      });
-  };
+  const fetchProducts = (allProductApi) => {
+    fetch(allProductApi)
+    .then((result) => result.json())
+    .then((result) => {
+      setProducts([...products, ...result.products]);
+      setMainTitleImage(result.products[0]);
+      setFirstMainProduct(result.products[0]);
+      setFirstMainProductImage(result.products[0].images[0]);
+      setSecondMainProduct(result.products[1]);
+      setSecondMainProductImage(result.products[1].images[0]);
+      setThirdMainProduct(result.products[2]);
+      setThirdMainProductImage(result.products[2].images[0]);
+      setFourMainProduct(result.products[3]);
+      setFourMainProductImage(result.products[3].images[0]);
+    })
+  }
 
   return (
     <div className="main-page">
-      {MainTitleImage && (
+      {mainTitleImage && (
         <MainImage
-          image={`${IMAGE_BASE_URL}w1280${MainTitleImage.backdrop_path}`}
-          title={MainTitleImage.title}
-          text={MainTitleImage.overview}
+          image={`http://localhost:5000/${firstMainProductImage}`}
+          title={firstMainProduct.title}
+          text={firstMainProduct.description}
         />
       )}
       <div className="main-row">
         <h2 className="content-title">Popular item</h2>
 
         <div className="site-card-wrapper">
-          <Row gutter={32}>
+          <Row gutter={24}>
             <Col span={6}>
               <Card
-                className="card-default-size"
+                className="nft-category-card-size"
                 hoverable
                 cover={
-                  <a href={`/marketplace/${FirstMainImage.id}`}>
+                  <a href={`/product/${firstMainProduct._id}`}>
                     <img
                       className="card-image-default-size"
                       alt="Popular item first"
-                      src={`${IMAGE_BASE_URL}w500${FirstMainImage.poster_path}`}
+                      src={`http://localhost:5000/${firstMainProductImage}`}
                     />
                   </a>
                 }
               >
-                <Meta title={FirstMainImage.title} />
+                <Meta className="nft-category-text" title={firstMainProduct.title} />
               </Card>
             </Col>
             <Col span={6}>
               <Card
-                className="card-default-size"
+                className="nft-category-card-size"
                 hoverable
                 cover={
-                  <a href={`/marketplace/${SecondMainImage.id}`}>
+                  <a href={`/product/${secondMainProduct._id}`}>
                     <img
                       className="card-image-default-size"
                       alt="Popular item second"
-                      src={`${IMAGE_BASE_URL}w500${SecondMainImage.poster_path}`}
+                      src={`http://localhost:5000/${secondMainProductImage}`}
                     />
                   </a>
                 }
               >
-                <Meta title={SecondMainImage.title} />
+                <Meta className="nft-category-text" title={secondMainProduct.title} />
               </Card>
             </Col>
             <Col span={6}>
               <Card
-                className="card-default-size"
+                className="nft-category-card-size"
                 hoverable
                 cover={
-                  <a href={`/marketplace/${ThirdMainImage.id}`}>
+                  <a href={`/product/${thirdMainProduct._id}`}>
                     <img
                       className="card-image-default-size"
                       alt="Popular item third"
-                      src={`${IMAGE_BASE_URL}w500${ThirdMainImage.poster_path}`}
+                      src={`http://localhost:5000/${thirdMainProductImage}`}
                     />
                   </a>
                 }
               >
-                <Meta title={ThirdMainImage.title} />
+                <Meta className="nft-category-text" title={thirdMainProduct.title} />
               </Card>
             </Col>
             <Col span={6}>
               <Card
-                className="card-default-size"
+                className="nft-category-card-size"
                 hoverable
                 cover={
-                  <a href={`/marketplace/${FourthMainImage.id}`}>
+                  <a href={`/marketplace/${fourMainProduct._id}`}>
                     <img
                       className="card-image-default-size"
                       alt="Popular item four"
-                      src={`${IMAGE_BASE_URL}w500${FourthMainImage.poster_path}`}
+                      src={`http://localhost:5000/${fourMainProductImage}`}
                     />
                   </a>
                 }
               >
-                <Meta title={FourthMainImage.title} />
-              </Card>
-            </Col>
-          </Row>
-        </div>
-
-        <h2 className="content-title">Create and sell your NFTs</h2>
-
-        <div className="site-card-wrapper">
-          <Row gutter={16}>
-            <Col span={6}>
-              <Card title="Set up your wallet">
-                Once you’ve set up your wallet of choice, connect it to OpenSea
-                by clicking the wallet icon in the top right corner. Learn about
-                the{" "}
-                <a href="https://support.opensea.io/hc/en-us/articles/1500007978602-Wallets-supported-by-OpenSea">
-                  wallets we support.
-                </a>
-              </Card>
-            </Col>
-            <Col span={6}>
-              <Card title="Create your collection">
-                Click <a href="#">Create</a> and set up your collection. Add
-                social links, a description, profile & banner images, and set a
-                secondary sales fee.
-              </Card>
-            </Col>
-            <Col span={6}>
-              <Card title="Add your NFTs">
-                Upload your work (image, video, audio, or 3D art), add a title
-                and description, and customize your NFTs with properties, stats,
-                and unlockable content.
-              </Card>
-            </Col>
-            <Col span={6}>
-              <Card title="List them for sale">
-                Choose between auctions, fixed-price listings, and
-                declining-price listings. You choose how you want to sell your
-                NFTs, and we help you sell them!
+                <Meta className="nft-category-text" title={fourMainProduct.title} />
               </Card>
             </Col>
           </Row>

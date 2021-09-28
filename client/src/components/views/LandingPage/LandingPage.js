@@ -181,7 +181,6 @@ function LandingPage() {
 
                 </Content>
     
-              {/* //todo more list button 넣어야함 */}
             </Layout>
             </Content>
             <Footer className="footer-team-name">Team Diary</Footer>

@@ -2,6 +2,7 @@ import React from "react";
 import '../../../assets/css/mainPage.css'
 
 function MainImage(props) {
+  console.log('props.image => ', props.image)
   return (
     //! mainImage style은 url을 props로 받아서 className으로 안바꿈
     <div
