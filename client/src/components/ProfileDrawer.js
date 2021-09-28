@@ -12,8 +12,7 @@ import {
   API_KEY,
   API_URL,
   IMAGE_BASE_URL,
-  USER_SERVER,
-  SELLER_SERVER,
+  USER_SERVER
 } from "../templates/Config";
 
 import { LogoutOutlined, UserOutlined, HeartTwoTone, DollarOutlined } from "@ant-design/icons";
@@ -35,8 +34,6 @@ function ProfileDrawer() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [confirmLoadingSeller, setConfirmLoadingSeller] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
-  const [requestSellerUser, setRequestSellerUser] = useState(false);
-
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
@@ -56,14 +53,6 @@ function ProfileDrawer() {
     getUserInfo();
     // requestRoleSeller();
   }, []);
-
-  const requestRoleSeller = () => {
-    axios.post(`${SELLER_SERVER}request-seller`, dataToSubmit)
-    .then((response) => {
-      console.log('dataToSubmit -> ', dataToSubmit);
-      setRequestSellerUser(response.data);
-    })
-  }
 
   const fetchFavorites = (endPoint) => {
     fetch(endPoint)
@@ -395,7 +384,7 @@ function ProfileDrawer() {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               dataToSubmit = {
-                userFrom: profile.userData,
+                userId: profile.userData._id,
                 userName: profile.userData.name,
                 userRole: profile.userData.role,
                 userEmail: profile.userData.email,

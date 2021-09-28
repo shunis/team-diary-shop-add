@@ -36,11 +36,8 @@ router.put("/update-role/:sellerId", async (req, res) => {
 		} else {
 			seller.userRole = "ROLE_USER";
 		}
-		// console.log('seller ', seller)
-		// console.log('seller.userFrom ', seller.userFrom)
-		if (!isValidObjectId(seller.userFrom)) return res.status(400).send({ err: "invalid userId" });
-		const user = await User.findOne(seller.userFrom);
-		// console.log('user ', user)
+		if (!isValidObjectId(seller.userId)) return res.status(400).send({ err: "invalid userId" });
+		const user = await User.findById(seller.userId);
 		if (user.role === "ROLE_USER") {
 			user.role = "ROLE_SELLER";
 		} else {

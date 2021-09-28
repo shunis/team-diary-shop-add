@@ -1,25 +1,13 @@
-import React, {
-	useEffect,
-	useState
-} from 'react';
+import React, {	useEffect, useState } from 'react';
 import Axios from 'axios';
-import {
-	Table,
-	Modal,
-	Select,
-	Button,
-	message
-} from 'antd';
+import { Button } from 'antd';
+import { dateFormat } from '../../components/ParseData'
+import { sellerChangeRole } from "../../_actions/seller_actions"
 import "../../assets/css/adminPage.css";
-import { sellerChangeRole } from '../../_actions/seller_actions';
-import axios from 'axios';
-
-const { Column } = Table;
 
 function AdminPage() {
 	const [users, setUsers] = useState([]);
 	const [sellers, setSellers] = useState([]);
-	const [roleUpdateModalVisible, setRoleUpdateModalVisible] = useState(false);
 
 	useEffect(() => {
 		fetchUsers();
@@ -40,83 +28,63 @@ function AdminPage() {
 			})
 	}
 
-	const roleChangeHandler = (sellerId) => {
-		axios.put(`${process.env.REACT_APP_SELLER_SERVER}/update-role/${sellerId}`).then((response) => {
-			if (response.status === 200) {
-				message.success("change role");
-			} else {
-				message.error("failed change role");
-			}
-		})
-	}
-
-	const showRoleUpdateModal = () => {
-		setRoleUpdateModalVisible(true);
-	}
-
-	const handleOk = () => {
-		setRoleUpdateModalVisible(false);
-	}
-
-	const handleCancel = () => {
-		setRoleUpdateModalVisible(false);
-	}
-
-	const sellerColumns = [{
-			title: 'Email',
-			dataIndex: 'userEmail',
-			key: '1'
-		},
-		{
-			title: 'Name',
-			dataIndex: 'userName',
-			key: '2'
-		},
-		{
-			title: 'Role',
-			dataIndex: 'userRole',
-			key: '3'
-		},
-		{
-			title: 'CompanyName',
-			dataIndex: 'companyName',
-			key: '4'
-		},
-		{
-			title: 'CompanyAddress',
-			dataIndex: 'companyAddress',
-			key: '5'
-		},
-		{
-			title: 'Action',
-			key: '6',
-			render: (_, record) => <span>
-				<a onClick={showRoleUpdateModal}>change role</a>
-				<Modal title="Change Role" visible={roleUpdateModalVisible} onOk={handleOk} onCancel={handleCancel}>
-					<Button type="primary"  onClick={roleChangeHandler(record._id)}>change</Button>
-				</Modal>
-				</span>
-		}
-	]
-
 	return ( 
 		<div className = "admin-page-main">
 		<h2>User List</h2>
-		 <hr />
-
-		<Table dataSource = {users}>
-			<Column title = "Email" dataIndex = "email" key = "email" />
-			<Column title = "Name" dataIndex = "name" key = "name" />
-			<Column title = "JoinDate" dataIndex = "joinDate" key = "joinDate" />
-			<Column title = "Status" dataIndex = "status" key = "status" />
-			<Column title = "Role" dataIndex = "role" key = "role" />
-		</Table>
+		<hr />
+		<table>
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Name</th>
+					<th>JoinDate</th>
+					<th>Status</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				{users && users.map(item => (
+					<tr key={"user_" + item._id}>
+							<td>{item.email}</td>
+							<td>{item.name}</td>
+							<td>{dateFormat(item.joinDate, "YYYY-MM-DD")}</td>
+							<td>{item.status}</td>
+							<td>{item.role}</td>
+					</tr>
+				))}
+				</tbody>
+		</table>
 
 		<br />
 
 		<h2>Seller List</h2>
 		<hr />
-			<Table dataSource = {sellers} columns = {sellerColumns} />
+		<table>
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Name</th>
+					<th>Role</th>
+					<th>CompanyName</th>
+					<th>CompanyAddress</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{sellers && sellers.map(seller=> (
+					<tr key={"seller_" + seller._id}>
+						<td>{seller.userEmail}</td>
+						<td>{seller.userName}</td>
+						<td>{seller.userRole}</td>
+						<td>{seller.companyName}</td>
+						<td>{seller.companyAddress}</td>
+						<td>
+							<a>change role</a>
+						</td>
+					</tr>
+					))}
+			</tbody>
+		</table>
 		</div>
 	)
 }

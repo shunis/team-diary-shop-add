@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 const sellerSchema = mongoose.Schema({
-	userFrom: {
-		type: Schema.Types.ObjectId,
-		ref: 'User'
+	userId: {
+		type: String
 	},
 	userName: {
 		type: String
