@@ -11,10 +11,8 @@ import {
   ShopTwoTone,
   EditTwoTone,
   SettingTwoTone,
-  LogoutOutlined,
   LoginOutlined,
   UserOutlined,
-  HomeOutlined,
   UploadOutlined,
   HistoryOutlined,
   ShoppingCartOutlined,
@@ -75,14 +73,14 @@ function Navigation(props) {
         {user.userData.role === 'ROLE_SELLER' &&
           <Menu.Item
             key="upload"
-            icon={<UploadOutlined twoToneColor="#eb2f96" />}
+            icon={<UploadOutlined style={{ color: "#4287f5 "}} />}
           >
             <a href="/product/upload">upload</a>
           </Menu.Item>
         }
         <Menu.Item
           key="cart"
-          icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
+          icon={<ShoppingCartOutlined style={{ color: "#4287f5 "}} />}
         >
         <a href="/user/cart" className="head-example" style={{ color: '#667777' }} >
           cart
@@ -92,16 +90,16 @@ function Navigation(props) {
         </Menu.Item>
         <Menu.Item
           key="history"
-          icon={<HistoryOutlined twoToneColor="#eb2f96" />}
+          icon={<HistoryOutlined style={{ color: "#4287f5 "}} />}
         >
           <a href="/history">history</a>
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           key="Favorite"
           icon={<HeartTwoTone twoToneColor="#eb2f96" />}
         >
           <a href="/favorite">Favorite</a>
-        </Menu.Item>
+        </Menu.Item> */}
         <SubMenu key="Settings" icon={<SettingTwoTone />} title="Setting">
           <Menu.Item key="Profile" icon={<UserOutlined />}>
             <a onClick={showDrawer}>Profile</a>
