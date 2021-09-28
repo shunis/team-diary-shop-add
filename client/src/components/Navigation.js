@@ -72,12 +72,14 @@ function Navigation(props) {
         >
           <a href="/landing">Home2</a>
         </Menu.Item> */}
-        <Menu.Item
-          key="upload"
-          icon={<UploadOutlined twoToneColor="#eb2f96" />}
-        >
-          <a href="/product/upload">upload</a>
-        </Menu.Item>
+        {user.userData.role === 'ROLE_SELLER' &&
+          <Menu.Item
+            key="upload"
+            icon={<UploadOutlined twoToneColor="#eb2f96" />}
+          >
+            <a href="/product/upload">upload</a>
+          </Menu.Item>
+        }
         <Menu.Item
           key="cart"
           icon={<ShoppingCartOutlined twoToneColor="#eb2f96" />}
